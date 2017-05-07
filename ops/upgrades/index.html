@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Upgrades - StashCache Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Upgrades";
+    var mkdocs_page_input_path = "ops/upgrades.md";
+    var mkdocs_page_url = "/ops/upgrades/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> StashCache Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cache</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../admin/install/">Install</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../admin/configure/">Configure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../admin/register/">Register</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../admin/start/">Start</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Operations</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Upgrades</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#osg-stashcache-upgrade-status">OSG StashCache Upgrade Status</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#2017-table-of-caches">2017 Table of Caches</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">StashCache Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Operations &raquo;</li>
+        
+      
+    
+    <li>Upgrades</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/opensciencegrid/stashcache/edit/master/docs/ops/upgrades.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="osg-stashcache-upgrade-status">OSG StashCache Upgrade Status</h1>
+<p>This page is used to track the status of hardware and software used for the StashCache service within the OSG community. Please update your status when you complete an upgrade. Currently monitored StashCache resources (Origins, Caches, Redirectors) are included in the <a href="http://myosg.grid.iu.edu/rgstatushistory/index?downtime_attrs_showpast=&amp;account_type=cumulative_hours&amp;ce_account_type=gip_vo&amp;se_account_type=vo_transfer_volume&amp;bdiitree_type=total_jobs&amp;bdii_object=service&amp;bdii_server=is-osg&amp;start_type=7daysago&amp;start_date=09%2F20%2F2016&amp;end_type=now&amp;end_date=09%2F20%2F2016&amp;rg=on&amp;rg_sel%5B%5D=433&amp;rg_sel%5B%5D=454&amp;rg_sel%5B%5D=430&amp;active=on&amp;active_value=1&amp;disable_value=1">RSV tests</a>.</p>
+<h2 id="2017-table-of-caches">2017 Table of Caches</h2>
+<table>
+<thead>
+<tr>
+<th><em>Hosting site</em></th>
+<th><em>Hostname</em></th>
+<th><em>XRootD version</em></th>
+<th><em>OS</em></th>
+<th><em>CPU</em></th>
+<th><em>RAM</em></th>
+<th><em>Disk (cache) space</em></th>
+<th><em>Disk configuration</em></th>
+<th><em>Connectivity</em></th>
+<th><em>Notes</em></th>
+<th><em>Last update</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../../admin/start/" class="btn btn-neutral" title="Start"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/opensciencegrid/stashcache" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../admin/start/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>

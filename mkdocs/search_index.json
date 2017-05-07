@@ -1,0 +1,104 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "StashCache\n\n\nThis documenation serve to Operations team and Site Admins who manage StashCache nodes (origin or cache server; or redirectors). Main functionality of StashCache is based on \nXRootD\n technology, there are other components involved to function StashCache properly, though. E.g. if you are a user of \n\"stashcp\"\n you want to follow \nthis\n document instead.\n\n\n\n\nStashCache operations consist of the following documents:\n\n\n\n\nStashCache redirectors\n: Redirectors are managed by GOC Operations team at Indiana University, redirectors provides federated access to the data across origins.\n\n\nStashCache origins\n: Managed by an organization, \n\"origin\"\n is data server to host files locally and serve them to users upon transfer request (via \nstashcp\n) unless data are already cached.\n\n\nStashCache caches\n: Managed by an organization, \n\"cache\"\n server to keep data cached and immediately available (via \nstashcp\n)within Stash federation (without re-transfering from \"origin\").\n\n\nStashCache upgrades\n: Keeps track of versions deployed at sites as well as other information about OS, system resources, connectivity, etc.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#stashcache", 
+            "text": "This documenation serve to Operations team and Site Admins who manage StashCache nodes (origin or cache server; or redirectors). Main functionality of StashCache is based on  XRootD  technology, there are other components involved to function StashCache properly, though. E.g. if you are a user of  \"stashcp\"  you want to follow  this  document instead.   StashCache operations consist of the following documents:   StashCache redirectors : Redirectors are managed by GOC Operations team at Indiana University, redirectors provides federated access to the data across origins.  StashCache origins : Managed by an organization,  \"origin\"  is data server to host files locally and serve them to users upon transfer request (via  stashcp ) unless data are already cached.  StashCache caches : Managed by an organization,  \"cache\"  server to keep data cached and immediately available (via  stashcp )within Stash federation (without re-transfering from \"origin\").  StashCache upgrades : Keeps track of versions deployed at sites as well as other information about OS, system resources, connectivity, etc.", 
+            "title": "StashCache"
+        }, 
+        {
+            "location": "/admin/install/", 
+            "text": "Installation Guide\n\n\nThis document describes how to install a StashCache cache, a server that caches files locally rather than serving files to the StashCache federation. The installation utilizes XRootD and HTCondor for file storage and monitoring, respectively.\n\n\n\n\nBefore starting the installation process, consider the following points:\n\n\n\n\nUser IDs: If they do not exist already, the installation will create the Linux user IDs condor and xrootd\n\n\nService certificate: The StashCache service uses a host certificate at /etc/grid-security/host*.pem\n\n\nNetwork ports: The StashCache service must talk to the central collector on port 9619 (TCP) and XRootD services on port 1094 (TCP)\n\n\nHardware requirements: We recommend that a StashCache server has at least 10Gbps connectivity, 1TB of disk space, and 8GB of RAM. \n\n\n\n\nAs with all OSG software installations, there are some one-time steps to prepare in advance:\n\n\n\n\nEnsure the host has \na supported operating system\n\n\nObtain root access to the host\n\n\nPrepare \nthe required Yum repositories\n\n\nInstall \nCA certificates\n\n\n\n\nInstalling the StashCache metapackage\n\n\nThe StashCache daemon consists of an XRootD server and an HTCondor-based service for collecting and reporting statistics about the cache. To simplify installation, OSG provides convenience RPMs that install all required software with a single command:\n\n\n\n\nClean yum cache:\n\n\n\n\n   [root@client ~]$ yum clean all --enablerepo=*\n\n\n\n\n\n\nUpdate software:\n\n\n\n\n   [root@client ~]$ yum update\n\n\n\n\nThis command will update all packages on your system.\n\n\n\n\nInstall the StashCache metapackage from OSG3.3 repository:\n\n\n\n\n   [root@client ~]$ yum install stashcache-daemon fetch-crl stashcache-cache-{server || origin}\n\n\n\n\n\n\nMount the disk that will be used for the cache to /stash and set owner of the directory to xrootd user.", 
+            "title": "Install"
+        }, 
+        {
+            "location": "/admin/install/#installation-guide", 
+            "text": "This document describes how to install a StashCache cache, a server that caches files locally rather than serving files to the StashCache federation. The installation utilizes XRootD and HTCondor for file storage and monitoring, respectively.   Before starting the installation process, consider the following points:   User IDs: If they do not exist already, the installation will create the Linux user IDs condor and xrootd  Service certificate: The StashCache service uses a host certificate at /etc/grid-security/host*.pem  Network ports: The StashCache service must talk to the central collector on port 9619 (TCP) and XRootD services on port 1094 (TCP)  Hardware requirements: We recommend that a StashCache server has at least 10Gbps connectivity, 1TB of disk space, and 8GB of RAM.    As with all OSG software installations, there are some one-time steps to prepare in advance:   Ensure the host has  a supported operating system  Obtain root access to the host  Prepare  the required Yum repositories  Install  CA certificates", 
+            "title": "Installation Guide"
+        }, 
+        {
+            "location": "/admin/install/#installing-the-stashcache-metapackage", 
+            "text": "The StashCache daemon consists of an XRootD server and an HTCondor-based service for collecting and reporting statistics about the cache. To simplify installation, OSG provides convenience RPMs that install all required software with a single command:   Clean yum cache:      [root@client ~]$ yum clean all --enablerepo=*   Update software:      [root@client ~]$ yum update  This command will update all packages on your system.   Install the StashCache metapackage from OSG3.3 repository:      [root@client ~]$ yum install stashcache-daemon fetch-crl stashcache-cache-{server || origin}   Mount the disk that will be used for the cache to /stash and set owner of the directory to xrootd user.", 
+            "title": "Installing the StashCache metapackage"
+        }, 
+        {
+            "location": "/admin/configure/", 
+            "text": "Configuring StashCache\n\n\nThe following section describes required configuration to have a functional StashCache cache. StashCache packages need to be manually configured from pre-existing xrootd configuration.\n\n\nOrigin server\n\n\nThe origin server connects only to a redirector (not directly to cache server), thus minimal xrootd configuration is required. The configuration file, \n/etc/xrootd/xrootd-stashcache-origin-server.cfg\n:\n\n\nall.export /\nset localroot = /stash\nxrd.port 1094\n\nall.role server\nall.manager redirector.osgstorage.org+ 1213\n\noss.localroot $(localroot)\nxrootd.trace emsg login stall redirect\nofs.trace none\nxrd.trace conn\ncms.trace all\nsec.protocol  host\nsec.protbind  * none\nall.adminpath /var/spool/xrootd\nall.pidpath /var/run/xrootd\n\n# Sending monitoring information\nxrd.report uct2-collectd.mwt2.org:9931\nxrootd.monitor all auth flush 30s window 5s fstat 60 lfn ops xfr 5 dest redir fstat info user uct2-collectd.mwt2.org:9930\n\n\n\n\n\n\nNote\n\n\n\n\nnon-authenticated cache is considered as default, see xyz for enabling authenticated cache\nFor configuring cache one needs to define \npss.origin redirector.osgstorage.org:1024\n. Example of the configuration of cache server is as follows:\n\n\nall.export  /\nset cachedir = /stash\nxrd.allow host *\nsec.protocol  host\nall.adminpath /var/spool/xrootd\n\nxrootd.trace emsg login stall redirect\nofs.trace all\nxrd.trace all\ncms.trace all\n\nofs.osslib  libXrdPss.so\npss.origin redirector.osgstorage.org:1094\npss.cachelib libXrdFileCache.so\npss.setopt DebugLevel 1\n\noss.localroot $(cachedir)\n\n# Config for v1 (everything \n=v4.5.0)\n#pfc.nramprefetch 4\n#pfc.nramread 4\n#pfc.diskusage 0.98 0.99\n\n# Config for v2 (4.4.0 pre-release)\npfc.blocksize 512k\npfc.ram       32g\npfc.prefetch  10\npfc.diskusage 0.98 0.99\n\nxrootd.seclib /usr/lib64/libXrdSec.so\nsec.protocol /usr/lib64 gsi \\\n  -certdir:/etc/grid-security/certificates \\\n  -cert:/etc/grid-security/xrd/xrdcert.pem \\\n  -key:/etc/grid-security/xrd/xrdkey.pem \\\n  -crl:1 \\\n  -authzfun:libXrdLcmaps.so \\\n  -authzfunparms:--lcmapscfg,/etc/xrootd/lcmaps.cfg,--loglevel,4|useglobals \\\n  -gmapopt:10 \\\n  -authzto:3600\n\n# Enable the authorization module, even if we have an unauthenticated instance.\nofs.authorize 1\nacc.audit deny grant\n\n# Run the authenticated instance on port 8443 (Xrootd and HTTPS)\n# Notice authenticated and unauthenticated instances use separate auth\n# files.\nif named stashcache-cache-server-auth\n   #pss.origin  red-gridftp4.unl.edu:1094\n   xrd.port 8443\n   acc.authdb /etc/xrootd/Authfile-auth\n   sec.protbind * gsi\n   xrd.protocol http:8443 libXrdHttp.so\n   pss.origin xrootd-local.unl.edu:1094\nelse\n# Unauthenticated instance runs on port 1094 (Xrootd) and 8000 (HTTP/HTTPS)\n   acc.authdb /etc/xrootd/Authfile-noauth\n   #sec.protbind * none\n   sec.protbind  * none\n   xrd.protocol http:8000 libXrdHttp.so\nfi\n\nhttp.cadir /etc/grid-security/certificates\nhttp.cert /etc/grid-security/xrd/xrdcert.pem\nhttp.key /etc/grid-security/xrd/xrdkey.pem\nhttp.secxtractor /usr/lib64/libXrdLcmaps.so\nhttp.listingdeny yes\nhttp.staticpreload http://static/robots.txt /etc/xrootd/stashcache-robots.txt\n\n# Tune the client timeouts to more aggressively timeout.\npss.setopt ParallelEvtLoop 10\npss.setopt RequestTimeout 25\npss.setopt ConnectTimeout 25\npss.setopt ConnectionRetry 2\n\n#Sending monitoring information\nxrd.report uct2-collectd.mwt2.org:9931\nxrootd.monitor all auth flush 30s window 5s fstat 60 lfn ops xfr 5 dest redir fstat info user uct2-collectd.mwt2.org:9930\n\nall.sitename Nebraska\n\n# Remote debugging\nxrootd.diglib * /etc/xrootd/digauth.cf\n\n\n\n\nEnabling authenticated cache\n\n\nRHEL7\n\n\nRHEL6\n\n\nAdjust disk utilization\n\n\nTo adjust the disk utilization of your StashCache cache, modify the values of pfc.diskusage in /etc/xrootd/xrootd-stashcache-cache-server.cfg:\n\n\npfc.diskusage 0.98 .99\n\n\n\n\nThe first value and second values correspond to the low and high usage watermarks, respectively, in percentages. When the high watermark is reached, the XRootD service will automatically purge cache objects down to the low watermark.\n\n\nEnable remote debugging\n\n\nThis feature enables remote debugging via the digFS read-only file system\n\n\nxrootd.diglib * /etc/xrootd/digauth.cf\n\n\n\n\nwhere \n/etc/xrootd/digauth.cf\n may have following content:\n\n\nall allow host h=abc.org\nall allow host h=*.xyz.edu", 
+            "title": "Configure"
+        }, 
+        {
+            "location": "/admin/configure/#configuring-stashcache", 
+            "text": "The following section describes required configuration to have a functional StashCache cache. StashCache packages need to be manually configured from pre-existing xrootd configuration.", 
+            "title": "Configuring StashCache"
+        }, 
+        {
+            "location": "/admin/configure/#origin-server", 
+            "text": "The origin server connects only to a redirector (not directly to cache server), thus minimal xrootd configuration is required. The configuration file,  /etc/xrootd/xrootd-stashcache-origin-server.cfg :  all.export /\nset localroot = /stash\nxrd.port 1094\n\nall.role server\nall.manager redirector.osgstorage.org+ 1213\n\noss.localroot $(localroot)\nxrootd.trace emsg login stall redirect\nofs.trace none\nxrd.trace conn\ncms.trace all\nsec.protocol  host\nsec.protbind  * none\nall.adminpath /var/spool/xrootd\nall.pidpath /var/run/xrootd\n\n# Sending monitoring information\nxrd.report uct2-collectd.mwt2.org:9931\nxrootd.monitor all auth flush 30s window 5s fstat 60 lfn ops xfr 5 dest redir fstat info user uct2-collectd.mwt2.org:9930   Note   non-authenticated cache is considered as default, see xyz for enabling authenticated cache\nFor configuring cache one needs to define  pss.origin redirector.osgstorage.org:1024 . Example of the configuration of cache server is as follows:  all.export  /\nset cachedir = /stash\nxrd.allow host *\nsec.protocol  host\nall.adminpath /var/spool/xrootd\n\nxrootd.trace emsg login stall redirect\nofs.trace all\nxrd.trace all\ncms.trace all\n\nofs.osslib  libXrdPss.so\npss.origin redirector.osgstorage.org:1094\npss.cachelib libXrdFileCache.so\npss.setopt DebugLevel 1\n\noss.localroot $(cachedir)\n\n# Config for v1 (everything  =v4.5.0)\n#pfc.nramprefetch 4\n#pfc.nramread 4\n#pfc.diskusage 0.98 0.99\n\n# Config for v2 (4.4.0 pre-release)\npfc.blocksize 512k\npfc.ram       32g\npfc.prefetch  10\npfc.diskusage 0.98 0.99\n\nxrootd.seclib /usr/lib64/libXrdSec.so\nsec.protocol /usr/lib64 gsi \\\n  -certdir:/etc/grid-security/certificates \\\n  -cert:/etc/grid-security/xrd/xrdcert.pem \\\n  -key:/etc/grid-security/xrd/xrdkey.pem \\\n  -crl:1 \\\n  -authzfun:libXrdLcmaps.so \\\n  -authzfunparms:--lcmapscfg,/etc/xrootd/lcmaps.cfg,--loglevel,4|useglobals \\\n  -gmapopt:10 \\\n  -authzto:3600\n\n# Enable the authorization module, even if we have an unauthenticated instance.\nofs.authorize 1\nacc.audit deny grant\n\n# Run the authenticated instance on port 8443 (Xrootd and HTTPS)\n# Notice authenticated and unauthenticated instances use separate auth\n# files.\nif named stashcache-cache-server-auth\n   #pss.origin  red-gridftp4.unl.edu:1094\n   xrd.port 8443\n   acc.authdb /etc/xrootd/Authfile-auth\n   sec.protbind * gsi\n   xrd.protocol http:8443 libXrdHttp.so\n   pss.origin xrootd-local.unl.edu:1094\nelse\n# Unauthenticated instance runs on port 1094 (Xrootd) and 8000 (HTTP/HTTPS)\n   acc.authdb /etc/xrootd/Authfile-noauth\n   #sec.protbind * none\n   sec.protbind  * none\n   xrd.protocol http:8000 libXrdHttp.so\nfi\n\nhttp.cadir /etc/grid-security/certificates\nhttp.cert /etc/grid-security/xrd/xrdcert.pem\nhttp.key /etc/grid-security/xrd/xrdkey.pem\nhttp.secxtractor /usr/lib64/libXrdLcmaps.so\nhttp.listingdeny yes\nhttp.staticpreload http://static/robots.txt /etc/xrootd/stashcache-robots.txt\n\n# Tune the client timeouts to more aggressively timeout.\npss.setopt ParallelEvtLoop 10\npss.setopt RequestTimeout 25\npss.setopt ConnectTimeout 25\npss.setopt ConnectionRetry 2\n\n#Sending monitoring information\nxrd.report uct2-collectd.mwt2.org:9931\nxrootd.monitor all auth flush 30s window 5s fstat 60 lfn ops xfr 5 dest redir fstat info user uct2-collectd.mwt2.org:9930\n\nall.sitename Nebraska\n\n# Remote debugging\nxrootd.diglib * /etc/xrootd/digauth.cf", 
+            "title": "Origin server"
+        }, 
+        {
+            "location": "/admin/configure/#enabling-authenticated-cache", 
+            "text": "", 
+            "title": "Enabling authenticated cache"
+        }, 
+        {
+            "location": "/admin/configure/#rhel7", 
+            "text": "", 
+            "title": "RHEL7"
+        }, 
+        {
+            "location": "/admin/configure/#rhel6", 
+            "text": "", 
+            "title": "RHEL6"
+        }, 
+        {
+            "location": "/admin/configure/#adjust-disk-utilization", 
+            "text": "To adjust the disk utilization of your StashCache cache, modify the values of pfc.diskusage in /etc/xrootd/xrootd-stashcache-cache-server.cfg:  pfc.diskusage 0.98 .99  The first value and second values correspond to the low and high usage watermarks, respectively, in percentages. When the high watermark is reached, the XRootD service will automatically purge cache objects down to the low watermark.", 
+            "title": "Adjust disk utilization"
+        }, 
+        {
+            "location": "/admin/configure/#enable-remote-debugging", 
+            "text": "This feature enables remote debugging via the digFS read-only file system  xrootd.diglib * /etc/xrootd/digauth.cf  where  /etc/xrootd/digauth.cf  may have following content:  all allow host h=abc.org\nall allow host h=*.xyz.edu", 
+            "title": "Enable remote debugging"
+        }, 
+        {
+            "location": "/admin/register/", 
+            "text": "Registering StashCache\n\n\n...coming soon", 
+            "title": "Register"
+        }, 
+        {
+            "location": "/admin/register/#registering-stashcache", 
+            "text": "...coming soon", 
+            "title": "Registering StashCache"
+        }, 
+        {
+            "location": "/admin/start/", 
+            "text": "Managing StashCache and associated services\n\n\n...coming soon", 
+            "title": "Start"
+        }, 
+        {
+            "location": "/admin/start/#managing-stashcache-and-associated-services", 
+            "text": "...coming soon", 
+            "title": "Managing StashCache and associated services"
+        }, 
+        {
+            "location": "/ops/upgrades/", 
+            "text": "OSG StashCache Upgrade Status\n\n\nThis page is used to track the status of hardware and software used for the StashCache service within the OSG community. Please update your status when you complete an upgrade. Currently monitored StashCache resources (Origins, Caches, Redirectors) are included in the \nRSV tests\n.\n\n\n2017 Table of Caches\n\n\n\n\n\n\n\n\nHosting site\n\n\nHostname\n\n\nXRootD version\n\n\nOS\n\n\nCPU\n\n\nRAM\n\n\nDisk (cache) space\n\n\nDisk configuration\n\n\nConnectivity\n\n\nNotes\n\n\nLast update", 
+            "title": "Upgrades"
+        }, 
+        {
+            "location": "/ops/upgrades/#osg-stashcache-upgrade-status", 
+            "text": "This page is used to track the status of hardware and software used for the StashCache service within the OSG community. Please update your status when you complete an upgrade. Currently monitored StashCache resources (Origins, Caches, Redirectors) are included in the  RSV tests .", 
+            "title": "OSG StashCache Upgrade Status"
+        }, 
+        {
+            "location": "/ops/upgrades/#2017-table-of-caches", 
+            "text": "Hosting site  Hostname  XRootD version  OS  CPU  RAM  Disk (cache) space  Disk configuration  Connectivity  Notes  Last update", 
+            "title": "2017 Table of Caches"
+        }
+    ]
+}

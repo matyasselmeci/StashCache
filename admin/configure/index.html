@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Configure - StashCache Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Configure";
+    var mkdocs_page_input_path = "admin/configure.md";
+    var mkdocs_page_url = "/admin/configure/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> StashCache Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cache</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../install/">Install</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Configure</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#configuring-stashcache">Configuring StashCache</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#origin-server">Origin server</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../register/">Register</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../start/">Start</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Operations</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../ops/upgrades/">Upgrades</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">StashCache Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Cache &raquo;</li>
+        
+      
+    
+    <li>Configure</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/opensciencegrid/stashcache/edit/master/docs/admin/configure.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="configuring-stashcache">Configuring StashCache</h1>
+<p>The following section describes required configuration to have a functional StashCache cache. StashCache packages need to be manually configured from pre-existing xrootd configuration.</p>
+<h2 id="origin-server">Origin server</h2>
+<p>The origin server connects only to a redirector (not directly to cache server), thus minimal xrootd configuration is required. The configuration file, <code>/etc/xrootd/xrootd-stashcache-origin-server.cfg</code>:</p>
+<pre><code>all.export /
+set localroot = /stash
+xrd.port 1094
+
+all.role server
+all.manager redirector.osgstorage.org+ 1213
+
+oss.localroot $(localroot)
+xrootd.trace emsg login stall redirect
+ofs.trace none
+xrd.trace conn
+cms.trace all
+sec.protocol  host
+sec.protbind  * none
+all.adminpath /var/spool/xrootd
+all.pidpath /var/run/xrootd
+
+# Sending monitoring information
+xrd.report uct2-collectd.mwt2.org:9931
+xrootd.monitor all auth flush 30s window 5s fstat 60 lfn ops xfr 5 dest redir fstat info user uct2-collectd.mwt2.org:9930
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>non-authenticated cache is considered as default, see xyz for enabling authenticated cache
+For configuring cache one needs to define <code>pss.origin redirector.osgstorage.org:1024</code>. Example of the configuration of cache server is as follows:</p>
+<pre><code>all.export  /
+set cachedir = /stash
+xrd.allow host *
+sec.protocol  host
+all.adminpath /var/spool/xrootd
+
+xrootd.trace emsg login stall redirect
+ofs.trace all
+xrd.trace all
+cms.trace all
+
+ofs.osslib  libXrdPss.so
+pss.origin redirector.osgstorage.org:1094
+pss.cachelib libXrdFileCache.so
+pss.setopt DebugLevel 1
+
+oss.localroot $(cachedir)
+
+# Config for v1 (everything &lt;=v4.5.0)
+#pfc.nramprefetch 4
+#pfc.nramread 4
+#pfc.diskusage 0.98 0.99
+
+# Config for v2 (4.4.0 pre-release)
+pfc.blocksize 512k
+pfc.ram       32g
+pfc.prefetch  10
+pfc.diskusage 0.98 0.99
+
+xrootd.seclib /usr/lib64/libXrdSec.so
+sec.protocol /usr/lib64 gsi \
+  -certdir:/etc/grid-security/certificates \
+  -cert:/etc/grid-security/xrd/xrdcert.pem \
+  -key:/etc/grid-security/xrd/xrdkey.pem \
+  -crl:1 \
+  -authzfun:libXrdLcmaps.so \
+  -authzfunparms:--lcmapscfg,/etc/xrootd/lcmaps.cfg,--loglevel,4|useglobals \
+  -gmapopt:10 \
+  -authzto:3600
+
+# Enable the authorization module, even if we have an unauthenticated instance.
+ofs.authorize 1
+acc.audit deny grant
+
+# Run the authenticated instance on port 8443 (Xrootd and HTTPS)
+# Notice authenticated and unauthenticated instances use separate auth
+# files.
+if named stashcache-cache-server-auth
+   #pss.origin  red-gridftp4.unl.edu:1094
+   xrd.port 8443
+   acc.authdb /etc/xrootd/Authfile-auth
+   sec.protbind * gsi
+   xrd.protocol http:8443 libXrdHttp.so
+   pss.origin xrootd-local.unl.edu:1094
+else
+# Unauthenticated instance runs on port 1094 (Xrootd) and 8000 (HTTP/HTTPS)
+   acc.authdb /etc/xrootd/Authfile-noauth
+   #sec.protbind * none
+   sec.protbind  * none
+   xrd.protocol http:8000 libXrdHttp.so
+fi
+
+http.cadir /etc/grid-security/certificates
+http.cert /etc/grid-security/xrd/xrdcert.pem
+http.key /etc/grid-security/xrd/xrdkey.pem
+http.secxtractor /usr/lib64/libXrdLcmaps.so
+http.listingdeny yes
+http.staticpreload http://static/robots.txt /etc/xrootd/stashcache-robots.txt
+
+# Tune the client timeouts to more aggressively timeout.
+pss.setopt ParallelEvtLoop 10
+pss.setopt RequestTimeout 25
+pss.setopt ConnectTimeout 25
+pss.setopt ConnectionRetry 2
+
+#Sending monitoring information
+xrd.report uct2-collectd.mwt2.org:9931
+xrootd.monitor all auth flush 30s window 5s fstat 60 lfn ops xfr 5 dest redir fstat info user uct2-collectd.mwt2.org:9930
+
+all.sitename Nebraska
+
+# Remote debugging
+xrootd.diglib * /etc/xrootd/digauth.cf
+</code></pre>
+
+<h3 id="enabling-authenticated-cache">Enabling authenticated cache</h3>
+<h4 id="rhel7">RHEL7</h4>
+<h4 id="rhel6">RHEL6</h4>
+<h3 id="adjust-disk-utilization">Adjust disk utilization</h3>
+<p>To adjust the disk utilization of your StashCache cache, modify the values of pfc.diskusage in /etc/xrootd/xrootd-stashcache-cache-server.cfg:</p>
+<pre><code>pfc.diskusage 0.98 .99
+</code></pre>
+
+<p>The first value and second values correspond to the low and high usage watermarks, respectively, in percentages. When the high watermark is reached, the XRootD service will automatically purge cache objects down to the low watermark.</p>
+<h3 id="enable-remote-debugging">Enable remote debugging</h3>
+<p>This feature enables remote debugging via the digFS read-only file system</p>
+<pre><code>xrootd.diglib * /etc/xrootd/digauth.cf
+</code></pre>
+
+<p>where <code>/etc/xrootd/digauth.cf</code> may have following content:</p>
+<pre><code>all allow host h=abc.org
+all allow host h=*.xyz.edu
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../register/" class="btn btn-neutral float-right" title="Register">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../install/" class="btn btn-neutral" title="Install"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/opensciencegrid/stashcache" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../register/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
