@@ -4,7 +4,7 @@
     
     <url>
      <loc>https://opensciencegrid.github.io/stashcache/</loc>
-     <lastmod>2017-05-08</lastmod>
+     <lastmod>2017-05-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,25 +13,25 @@
         
     <url>
      <loc>https://opensciencegrid.github.io/stashcache/admin/install/</loc>
-     <lastmod>2017-05-08</lastmod>
+     <lastmod>2017-05-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://opensciencegrid.github.io/stashcache/admin/configure/</loc>
-     <lastmod>2017-05-08</lastmod>
+     <lastmod>2017-05-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://opensciencegrid.github.io/stashcache/admin/register/</loc>
-     <lastmod>2017-05-08</lastmod>
+     <lastmod>2017-05-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://opensciencegrid.github.io/stashcache/admin/start/</loc>
-     <lastmod>2017-05-08</lastmod>
+     <lastmod>2017-05-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -41,7 +41,7 @@
         
     <url>
      <loc>https://opensciencegrid.github.io/stashcache/ops/upgrades/</loc>
-     <lastmod>2017-05-08</lastmod>
+     <lastmod>2017-05-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
