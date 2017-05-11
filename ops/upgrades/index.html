@@ -55,23 +55,35 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Cache</span>
+    <a class="" href="../../admin/install/">Install</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cache server</span>
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../admin/install/">Install</a>
+    <a class="" href="../../admin/configure-cache/">Configure cache</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../admin/configure/">Configure</a>
+    <a class="" href="../../admin/configure-cache-auth/">Configure cache auth</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../admin/register/">Register</a>
+    <a class="" href="../../admin/configure-cache-optional/">Configure cache optional</a>
                 </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Origin server</span>
+    <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../admin/start/">Start</a>
+    <a class="" href="../../admin/configure-origin/">Configure origin</a>
                 </li>
     </ul>
 	    </li>
@@ -80,6 +92,14 @@
 		
     <span class="caption-text">Operations</span>
     <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../register/">Register</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../start/">Start</a>
+                </li>
                 <li class=" current">
                     
     <a class="current" href="./">Upgrades</a>
@@ -90,6 +110,8 @@
         <ul>
         
             <li><a class="toctree-l4" href="#2017-table-of-caches">2017 Table of Caches</a></li>
+        
+            <li><a class="toctree-l4" href="#2016-table-of-caches">2016 Table of Caches</a></li>
         
         </ul>
     
@@ -144,23 +166,23 @@
 <table>
 <thead>
 <tr>
-<th><em>Hosting site</em></th>
-<th><em>Hostname</em></th>
-<th><em>XRootD version</em></th>
-<th><em>OS</em></th>
-<th><em>CPU</em></th>
-<th><em>RAM</em></th>
-<th><em>Disk (cache) space</em></th>
-<th><em>Disk configuration</em></th>
-<th><em>Connectivity</em></th>
-<th><em>Notes</em></th>
-<th><em>Last update</em></th>
+<th><strong>Hosting site</strong></th>
+<th><strong>Hostname</strong></th>
+<th><strong>XRootD version</strong></th>
+<th><strong>OS</strong></th>
+<th><strong>CPU</strong></th>
+<th><strong>RAM</strong></th>
+<th><strong>Disk (cache) space</strong></th>
+<th><strong>Disk configuration</strong></th>
+<th><strong>Connectivity</strong></th>
+<th><strong>Notes</strong></th>
+<th><strong>Last update</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
+<td>Syracuse</td>
+<td>its-condor-xrootd1.syr.edu</td>
 <td></td>
 <td></td>
 <td></td>
@@ -171,8 +193,93 @@
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>BNL</td>
+<td>osgxroot.usatlas.bnl.gov</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FZU</td>
+<td>novastore.farm.particle.cz</td>
+<td>4.4.0</td>
+<td></td>
+<td>2x Xeon(R) E5-2630 @2.30GHz</td>
+<td>32GB</td>
+<td>30TB</td>
+<td>12x3TB, RAID6, XFS</td>
+<td>10Gbps</td>
+<td></td>
+<td>10-28-2016</td>
+</tr>
+<tr>
+<td>Nebraska</td>
+<td>hcc-stash.unl.edu</td>
+<td>4.6.1-0.2.pre3.hcc</td>
+<td>CentOS 7.2.1511</td>
+<td>2x Xeon (R) E5530 @2.4GHz w/HT (8 real cores)</td>
+<td>24GB</td>
+<td>19TB</td>
+<td>12x 2TB SATA in RAID6, XFS</td>
+<td>10Gbps</td>
+<td></td>
+<td>04-06-2017</td>
+</tr>
+<tr>
+<td>UChicago</td>
+<td>stashcache.grid.uchicago.edu</td>
+<td>4.6.1-0.2.pre3.hcc</td>
+<td>SL 7.2</td>
+<td>2x Xeon(R) E5440 @2.83GHz</td>
+<td>32GB</td>
+<td>60TB</td>
+<td>5x 12TB arrays, RAID6, XFS, bound with oss.space</td>
+<td>2x10Gbps</td>
+<td>Old dCache node, probably not optimally tuned for XRootD</td>
+<td>04-06-2017</td>
+</tr>
+<tr>
+<td>UIllinois</td>
+<td>mwt2-stashcache.campuscluster.illinois.edu</td>
+<td>4.6.1-0.2.rc3.osg33</td>
+<td></td>
+<td>VM 4CPUS</td>
+<td>16GB</td>
+<td>100TB</td>
+<td>GPFS on DDN via FDR IB</td>
+<td>10Gbps</td>
+<td></td>
+<td>04-28-2017</td>
+</tr>
+<tr>
+<td>UCSD</td>
+<td>xrd-cache-1.t2.ucsd.edu</td>
+<td>4.5.0-0.5.beta</td>
+<td>CentOS 6.8</td>
+<td>2x Xeon(R) E5-2650 v3 @2.30GHz w/HT (40 cores total)</td>
+<td>128GB</td>
+<td>21.8TB</td>
+<td>6x 3.6TB, XFS, individual disks bound with oss.space</td>
+<td>10Gbps</td>
+<td>The same machine runs hdfs-healing xrootd cache on another set of 6 independent disks. We can move more disks to StashCache if needed.</td>
+<td>10-28-2016</td>
+</tr>
 </tbody>
 </table>
+<h3 id="2017-milestones">2017 Milestones</h3>
+<ul>
+<li>deploy IPv4 and IPv6 enabled XRootD caches
+...</li>
+</ul>
+<h2 id="2016-table-of-caches">2016 Table of Caches</h2>
+<p>...in order to keep history will add later from <a href="https://twiki.grid.iu.edu/bin/view/Documentation/Release3/StashCacheUpgrades">twiki</a></p>
               
             </div>
           </div>
@@ -181,7 +288,7 @@
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="../../admin/start/" class="btn btn-neutral" title="Start"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../start/" class="btn btn-neutral" title="Start"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -209,7 +316,7 @@
           <a href="https://github.com/opensciencegrid/stashcache" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../admin/start/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../start/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
     </span>

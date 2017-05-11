@@ -61,23 +61,35 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Cache</span>
+    <a class="" href="admin/install/">Install</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cache server</span>
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="admin/install/">Install</a>
+    <a class="" href="admin/configure-cache/">Configure cache</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="admin/configure/">Configure</a>
+    <a class="" href="admin/configure-cache-auth/">Configure cache auth</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="admin/register/">Register</a>
+    <a class="" href="admin/configure-cache-optional/">Configure cache optional</a>
                 </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Origin server</span>
+    <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="admin/start/">Start</a>
+    <a class="" href="admin/configure-origin/">Configure origin</a>
                 </li>
     </ul>
 	    </li>
@@ -86,6 +98,14 @@
 		
     <span class="caption-text">Operations</span>
     <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="ops/register/">Register</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="ops/start/">Start</a>
+                </li>
                 <li class="">
                     
     <a class="" href="ops/upgrades/">Upgrades</a>
@@ -129,14 +149,14 @@
             <div class="section">
               
                 <h1 id="stashcache">StashCache</h1>
-<p>This documenation serve to Operations team and Site Admins who manage StashCache nodes (origin or cache server; or redirectors). Main functionality of StashCache is based on <a href="http://xrootd.org">XRootD</a> technology, there are other components involved to function StashCache properly, though. E.g. if you are a user of <strong>"stashcp"</strong> you want to follow <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcache">this</a> document instead.</p>
+<p>This documentation is for Site Admins and OSG Operations team who manage StashCache nodes (origin or cache server; or redirectors). Main functionality of StashCache is based on <a href="http://xrootd.org">XRootD</a> technology, there are other components involved to function StashCache properly, though. E.g. if you are a user of <strong>"stashcp"</strong> you want to follow <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcache">this</a> document instead.</p>
 <hr />
 <p>StashCache operations consist of the following documents:</p>
 <ul>
+<li><a href="admin/install/">StashCache caches</a>: Managed by an organization, <strong>"cache"</strong> server to keep data cached and immediately available (via <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcach">stashcp</a>)within Stash federation (without re-transfering from "origin").</li>
+<li><a href="admin/install/">StashCache origins</a>: Managed by an organization, <strong>"origin"</strong> is data server to host files locally and serve them to users upon transfer request (via <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcach">stashcp</a>) unless data are already cached.</li>
 <li><a href="https://confluence.grid.iu.edu/display/STAS/Installing+an+XRootD+StashCache+Federation+Redirector">StashCache redirectors</a>: Redirectors are managed by GOC Operations team at Indiana University, redirectors provides federated access to the data across origins.</li>
-<li><a href="https://github.com/opensciencegrid/StashCache/docs/admin">StashCache origins</a>: Managed by an organization, <strong>"origin"</strong> is data server to host files locally and serve them to users upon transfer request (via <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcach">stashcp</a>) unless data are already cached.</li>
-<li><a href="https://github.com/opensciencegrid/StashCache/docs/admin">StashCache caches</a>: Managed by an organization, <strong>"cache"</strong> server to keep data cached and immediately available (via <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcach">stashcp</a>)within Stash federation (without re-transfering from "origin").</li>
-<li><a href="https://twiki.grid.iu.edu/bin/view/Documentation/Release3/StashCacheUpgrades">StashCache upgrades</a>: Keeps track of versions deployed at sites as well as other information about OS, system resources, connectivity, etc.</li>
+<li><a href="ops/upgrades/">StashCache upgrades</a>: Keeps track of versions deployed at sites as well as other information about OS, system resources, connectivity, etc.</li>
 </ul>
               
             </div>
@@ -186,5 +206,5 @@
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2017-05-10 21:27:36
+Build Date UTC : 2017-05-11 17:47:04
 -->

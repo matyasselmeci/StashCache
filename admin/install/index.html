@@ -53,37 +53,51 @@
     <a class="" href="../..">Home</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <span class="caption-text">Cache</span>
-    <ul class="subnav">
-                <li class=" current">
-                    
     <a class="current" href="./">Install</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#installation-guide">Installation Guide</a></li>
+    <li class="toctree-l2"><a href="#installation-guide">Installation Guide</a></li>
     
         <ul>
         
-            <li><a class="toctree-l4" href="#installing-the-stashcache-metapackage">Installing the StashCache metapackage</a></li>
+            <li><a class="toctree-l3" href="#installation-pre-requisities-for-origin-and-cache">Installation pre-requisities for Origin and Cache</a></li>
+        
+            <li><a class="toctree-l3" href="#installing-the-stashcache-metapackage">Installing the StashCache metapackage</a></li>
         
         </ul>
     
 
     </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cache server</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../configure-cache/">Configure cache</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../configure/">Configure</a>
+    <a class="" href="../configure-cache-auth/">Configure cache auth</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../register/">Register</a>
+    <a class="" href="../configure-cache-optional/">Configure cache optional</a>
                 </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Origin server</span>
+    <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../start/">Start</a>
+    <a class="" href="../configure-origin/">Configure origin</a>
                 </li>
     </ul>
 	    </li>
@@ -92,6 +106,14 @@
 		
     <span class="caption-text">Operations</span>
     <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../ops/register/">Register</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../ops/start/">Start</a>
+                </li>
                 <li class="">
                     
     <a class="" href="../../ops/upgrades/">Upgrades</a>
@@ -120,10 +142,6 @@
     <li><a href="../..">Docs</a> &raquo;</li>
     
       
-        
-          <li>Cache &raquo;</li>
-        
-      
     
     <li>Install</li>
     <li class="wy-breadcrumbs-aside">
@@ -139,15 +157,32 @@
             <div class="section">
               
                 <h1 id="installation-guide">Installation Guide</h1>
-<p>This document describes how to install a StashCache cache, a server that caches files locally rather than serving files to the StashCache federation. The installation utilizes XRootD and HTCondor for file storage and monitoring, respectively.</p>
-<hr />
-<p>Before starting the installation process, consider the following points:</p>
+<p>This document describes how to install a StashCache service (Origin or Cache). The installation utilizes XRootD and HTCondor for file storage and monitoring, respectively. The role of the Origin and Cache is different, following explanation may help to decide when would you need to install which:</p>
 <ul>
-<li>User IDs: If they do not exist already, the installation will create the Linux user IDs condor and xrootd</li>
-<li>Service certificate: The StashCache service uses a host certificate at /etc/grid-security/host*.pem</li>
-<li>Network ports: The StashCache service must talk to the central collector on port 9619 (TCP) and XRootD services on port 1094 (TCP)</li>
-<li>Hardware requirements: We recommend that a StashCache server has at least 10Gbps connectivity, 1TB of disk space, and 8GB of RAM. </li>
+<li><a href="admin/configure-cache.md">StashCache cache</a>: role of <strong>"cache"</strong> server is to keep data cached and immediately available (via <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcach">stashcp</a>)within Stash federation (without re-transfering from "origin").</li>
+<li><a href="admin/configure-origin.md">StashCache origin</a>: <strong>"origin"</strong> is data server to host files locally and serve them to users upon transfer request (via <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcach">stashcp</a>) unless data are already cached.</li>
 </ul>
+<hr />
+<h2 id="installation-pre-requisities-for-origin-and-cache">Installation pre-requisities for Origin and Cache</h2>
+<p>Before starting the installation process, consider the following mandatory points:</p>
+<ul>
+<li><strong>User IDs:</strong> If they do not exist already, the installation will create the Linux user IDs condor and xrootd</li>
+<li><strong>Service certificate:</strong> The StashCache service uses a host certificate at <code>/etc/grid-security/host*.pem</code></li>
+<li><strong>Network ports:</strong> The StashCache service must talk to:</li>
+<li>the central collector on port <code>9619 (TCP)</code> </li>
+<li>XRootD service on port <code>1094 (TCP)</code></li>
+<li>and allow XRootD service over HTTP on port <code>8000 (TCP)</code></li>
+<li><strong>Hardware requirements:</strong> We recommend that a StashCache server has at least 10Gbps connectivity, 1TB of disk space, and 8GB of RAM. </li>
+<li>More information about hardware and system configuration of existing caches you can find at <a href="../../ops/upgrades/">Upgrade status page</a>.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>:heavy_exclamation_mark: If installing authenticated StashCache, you need to do in addition following:
+<em> <strong>Service certificate:</strong> create copy of the certificate to <code>/etc/grid-security/xrd/xrd{cert,key}.pem</code>
+   * set owner of the directory <code>/etc/grid-security/xrd/</code> to <code>xrootd:xrootd</code> user:
+      <code>$ chown -R xrootd:xrootd /etc/grid-security/xrd/</code>
+</em> <strong>Network ports</strong>: allow connections on port <code>8443 (TCP)</code> </p>
 <p>As with all OSG software installations, there are some one-time steps to prepare in advance:</p>
 <ul>
 <li>Ensure the host has <a href="https://twiki.grid.iu.edu/bin/view/Documentation/Release3/SupportedOperatingSystems">a supported operating system</a></li>
@@ -164,20 +199,31 @@
 </code></pre>
 
 <ol>
-<li>Update software:</li>
+<li>Update software, this command will update all packages on your system:</li>
 </ol>
 <pre><code>   [root@client ~]$ yum update
 </code></pre>
 
-<p>This command will update all packages on your system.</p>
 <ol>
-<li>Install the StashCache metapackage from OSG3.3 repository:</li>
+<li>
+<p>Install the StashCache metapackage from OSG repository:</p>
+</li>
+<li>
+<p>if you are installing <strong>Origin server</strong>:
+   <code>[root@client ~]$ yum install stashcache-daemon fetch-crl stashcache-cache-origin</code></p>
+</li>
+<li>if you are installing <strong>Cache server</strong>:
+   <code>[root@client ~]$ yum install stashcache-daemon fetch-crl stashcache-cache-server</code></li>
 </ol>
-<pre><code>   [root@client ~]$ yum install stashcache-daemon fetch-crl stashcache-cache-{server || origin}
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>:heavy_exclamation_mark: If installing authenticated StashCache Cache server, you need additional packages to be installed:</p>
+<pre><code>   [root@client ~]$ yum install xrootd-lcmaps globus-proxy-utils
 </code></pre>
 
 <ol>
-<li>Mount the disk that will be used for the cache to /stash and set owner of the directory to xrootd user.</li>
+<li>Mount the disk that will be used for the cache to <em>/stash</em> and set owner of the directory to <code>xrootd:xrootd</code> user.</li>
 </ol>
               
             </div>
@@ -186,7 +232,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../configure/" class="btn btn-neutral float-right" title="Configure">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../configure-cache/" class="btn btn-neutral float-right" title="Configure cache">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../.." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -220,7 +266,7 @@
         <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../configure/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../configure-cache/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

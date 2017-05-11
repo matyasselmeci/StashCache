@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Start - StashCache Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Start";
+    var mkdocs_page_input_path = "ops/start.md";
+    var mkdocs_page_url = "/ops/start/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> StashCache Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../admin/install/">Install</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cache server</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../admin/configure-cache/">Configure cache</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../admin/configure-cache-auth/">Configure cache auth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../admin/configure-cache-optional/">Configure cache optional</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Origin server</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../admin/configure-origin/">Configure origin</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Operations</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../register/">Register</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Start</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#managing-stashcache-and-associated-services">Managing StashCache and associated services</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#non-authenticated-cache-server-services">Non-authenticated Cache server services</a></li>
+        
+            <li><a class="toctree-l4" href="#authenticated-cache-server-services">Authenticated Cache server services</a></li>
+        
+            <li><a class="toctree-l4" href="#origin-server-services">Origin server services</a></li>
+        
+            <li><a class="toctree-l4" href="#startstop-services">Start/stop services</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../upgrades/">Upgrades</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">StashCache Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Operations &raquo;</li>
+        
+      
+    
+    <li>Start</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/opensciencegrid/stashcache/edit/master/docs/ops/start.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="managing-stashcache-and-associated-services">Managing StashCache and associated services</h1>
+<p>Ensure that your <code>/stash</code> disk is mounted, and then start <code>xrootd</code> and <code>condor</code> service.</p>
+<h2 id="non-authenticated-cache-server-services">Non-authenticated Cache server services</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Software</strong></th>
+<th><strong>Service name</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XRootD</td>
+<td><code>xrootd@stashcache-cache-server.service</code></td>
+<td>RHEL7</td>
+</tr>
+<tr>
+<td>HTCondor</td>
+<td><code>condor.service</code></td>
+<td>RHEL7</td>
+</tr>
+<tr>
+<td>Fetch CRL</td>
+<td><code>fetch-crl-cron</code></td>
+<td>RHEL7</td>
+</tr>
+</tbody>
+</table>
+<h2 id="authenticated-cache-server-services">Authenticated Cache server services</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Software</strong></th>
+<th><strong>Service name</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XRootD</td>
+<td><code>xrootd@stashcache-cache-server-auth.service</code></td>
+<td>RHEL7</td>
+</tr>
+<tr>
+<td></td>
+<td><code>xrootd-renew-proxy.service</code></td>
+<td>RHEL7</td>
+</tr>
+<tr>
+<td></td>
+<td><code>xrootd-renew-proxy.timer</code></td>
+<td>RHEL7</td>
+</tr>
+<tr>
+<td>HTCondor</td>
+<td><code>condor.service</code></td>
+<td>RHEL7</td>
+</tr>
+<tr>
+<td>Fetch CRL</td>
+<td><code>fetch-crl-cron</code></td>
+<td>RHEL7</td>
+</tr>
+</tbody>
+</table>
+<h3 id="test-cache-server-reports-to-htcondor-collector">Test Cache server reports to HTCondor collector</h3>
+<p>To verify that your cache is being monitored properly, run the following command:</p>
+<pre><code>[user@client ~]$ condor_status -any -l -const &quot;Name==\&quot;xrootd@`hostname`\&quot;&quot;
+</code></pre>
+
+<p>Where <code>hostname</code> is the string returned by the hostname command. The output of the above command should provide an HTCondor ClassAd that details the status of your cache.</p>
+<h3 id="test-cvmfs-accessibility-via-cache-server">Test CVMFS accessibility via Cache server</h3>
+<pre><code>[user@client ~]$ curl -O http://cache_host:8000/user/dweitzel/public/blast/queries/query1
+</code></pre>
+
+<h2 id="origin-server-services">Origin server services</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Software</strong></th>
+<th><strong>Service name</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XRootD</td>
+<td><code>xrootd@stashcache-origin-server.service</code></td>
+<td>RHEL7</td>
+</tr>
+<tr>
+<td>XRootD</td>
+<td><code>cmsd@stashcache-origin-server.service</code></td>
+<td>RHEL7</td>
+</tr>
+</tbody>
+</table>
+<h3 id="test-origin-server-availability-in-stash-federation">Test Origin server availability in Stash Federation</h3>
+<p>To verify that your origin is being subscribed to the redirector, run the following command:</p>
+<pre><code>[user@client ~]$ xrdmapc --list s redirector.opensciencegrid.org:1094 
+0**** redirector.grid.iu.edu:1094
+      Srv redirector1.grid.iu.edu:2094
+      Srv csiu.grid.iu.edu:1094
+      Srv stash.osgconnect.net:1094
+      Srv stashcache.fnal.gov:1094
+      Srv redirector2.grid.iu.edu:2094
+      Srv ceph-gridftp1.grid.uchicago.edu:1094
+</code></pre>
+
+<p>The output should list hostname of your service. If not, look for any sings of trouble in the log files or contact us at <code>stashcache@opensciencegrid.org</code>.</p>
+<h2 id="startstop-services">Start/stop services</h2>
+<table>
+<thead>
+<tr>
+<th><strong>To...</strong></th>
+<th><strong>Run the command...</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start a service</td>
+<td>systemctl start SERVICE-NAME</td>
+<td>RHEL7</td>
+</tr>
+<tr>
+<td>Stop a service</td>
+<td>systemctl stop SERVICE-NAME</td>
+<td>RHEL7</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>systemctl status SERVICE-NAME</td>
+<td>RHEL7</td>
+</tr>
+<tr>
+<td>Enable</td>
+<td>systemctl enable SERVICE-NAME</td>
+<td>RHEL7</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../upgrades/" class="btn btn-neutral float-right" title="Upgrades">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../register/" class="btn btn-neutral" title="Register"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/opensciencegrid/stashcache" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../register/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../upgrades/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>

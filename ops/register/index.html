@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Register - StashCache Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Register";
+    var mkdocs_page_input_path = "ops/register.md";
+    var mkdocs_page_url = "/ops/register/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> StashCache Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../admin/install/">Install</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cache server</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../admin/configure-cache/">Configure cache</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../admin/configure-cache-auth/">Configure cache auth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../admin/configure-cache-optional/">Configure cache optional</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Origin server</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../admin/configure-origin/">Configure origin</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Operations</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Register</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#registering-stashcache-and-rsv-monitoring">Registering StashCache and RSV monitoring</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#registering-stashcache">Registering StashCache</a></li>
+        
+            <li><a class="toctree-l4" href="#configuring-resource-monitoring-for-rsv">Configuring resource monitoring for RSV</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../start/">Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../upgrades/">Upgrades</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">StashCache Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Operations &raquo;</li>
+        
+      
+    
+    <li>Register</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/opensciencegrid/stashcache/edit/master/docs/ops/register.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="registering-stashcache-and-rsv-monitoring">Registering StashCache and RSV monitoring</h1>
+<p>To join in on the monitoring you'll need to Register your resource and send me some information about your cache instructions in the Configuring resource monitoring.</p>
+<p>You can see the current state of affairs here:
+<em> <a href="http://myosg.grid.iu.edu/rgstatushistory/index?downtime_attrs_showpast=&amp;account_type=cumulative_hours&amp;ce_account_type=gip_vo&amp;se_account_type=vo_transfer_volume&amp;bdiitree_type=total_jobs&amp;bdii_object=service&amp;bdii_server=is-osg&amp;start_type=yesterday&amp;start_date=08%2F28%2F2015&amp;end_type=now&amp;end_date=08%2F28%2F2015&amp;rg=on&amp;rg_sel%5B%5D=433&amp;active=on&amp;active_value=1&amp;disable_value=1">Status history</a>
+</em> <a href="http://myosg.grid.iu.edu/rgcurrentstatus/index?datasource=currentstatus&amp;rg=on&amp;rg_433=on&amp;end_type=now&amp;active=on&amp;active_value=1">Status details</a> (click on the "+" sign for more detail)
+* <a href="http://myosg.grid.iu.edu/rgarmetric/index?downtime_attrs_showpast=&amp;account_type=cumulative_hours&amp;ce_account_type=gip_vo&amp;se_account_type=vo_transfer_volume&amp;bdiitree_type=total_jobs&amp;bdii_object=service&amp;bdii_server=is-osg&amp;start_type=7daysago&amp;start_date=08%2F28%2F2015&amp;end_type=now&amp;end_date=08%2F28%2F2015&amp;rg=on&amp;rg_sel%5B%5D=433&amp;active=on&amp;active_value=1&amp;disable_value=1">Availability metrics</a> </p>
+<h2 id="registering-stashcache">Registering StashCache</h2>
+<p>To register a cache instance go <a href="https://oim.grid.iu.edu/oim/resourceedit">here</a> (with a cert in your browser). Fill in the required fields, example is displayed below:</p>
+<h3 id="registering-stashcache-resource-information">Registering StashCache resource information:</h3>
+<ul>
+<li>the site <strong>must be</strong> <em>OSG-GOC</em> </li>
+<li>the resource group <strong>must be</strong> <em>Monitored Caches</em>
+<img alt="ResourceInfo" src="../../images/resource-info.png" /></li>
+</ul>
+<h3 id="registering-stashcache-resource-services">Registering StashCache resource services:</h3>
+<ul>
+<li>the service <strong>must be</strong> XRootD component
+<img alt="ResourceServices" src="../../images/resource-services.png" /></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>Contact Information (will be pre-filled, add or modify as you see fit) - there are several types of contact, administrative and security are the most important to the GOC - <strong>DO NOT</strong> check the WLCG resource box; Add a Update comment if you'd like.</p>
+<h3 id="confirming-and-submitting-stashcache-resource-registration">Confirming and submitting StashCache resource registration:</h3>
+<ul>
+<li>you must click the <strong>"Acceptable Use Policy"</strong> checkbox
+<img alt="FormConfirm" src="../../images/resource-confirm.png" />
+Hit the <strong>blue</strong> submit button.</li>
+</ul>
+<h2 id="configuring-resource-monitoring-for-rsv">Configuring resource monitoring for RSV</h2>
+<p>E.g. for the Nebraska instance the status of the following command is checked: </p>
+<pre><code>[user@client ~]$ xrdcp root://hcc-stash.unl.edu//stash/user/test.1M /tmp/dump
+</code></pre>
+
+<p>If the return status is zero, the cache is working, otherwise it is not. What we need from you is:
+* the equivalent <code>//stash/user/test.1M</code> a file you select that will always be there.</p>
+<p>When ready with registration, finish your configuration and <a href="../start/">start</a> your StashCache services.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../start/" class="btn btn-neutral float-right" title="Start">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../admin/configure-origin/" class="btn btn-neutral" title="Configure origin"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/opensciencegrid/stashcache" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../admin/configure-origin/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../start/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
