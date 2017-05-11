@@ -159,8 +159,8 @@
                 <h1 id="installation-guide">Installation Guide</h1>
 <p>This document describes how to install a StashCache service (Origin or Cache). The installation utilizes XRootD and HTCondor for file storage and monitoring, respectively. The role of the Origin and Cache is different, following explanation may help to decide when would you need to install which:</p>
 <ul>
-<li><a href="admin/configure-cache.md">StashCache cache</a>: role of <strong>"cache"</strong> server is to keep data cached and immediately available (via <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcach">stashcp</a>)within Stash federation (without re-transfering from "origin").</li>
-<li><a href="admin/configure-origin.md">StashCache origin</a>: <strong>"origin"</strong> is data server to host files locally and serve them to users upon transfer request (via <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcach">stashcp</a>) unless data are already cached.</li>
+<li><a href="../configure-cache/">StashCache cache</a>: role of <strong>"cache"</strong> server is to keep data cached and immediately available (via <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcach">stashcp</a>)within Stash federation (without re-transfering from "origin").</li>
+<li><a href="../configure-origin/">StashCache origin</a>: <strong>"origin"</strong> is data server to host files locally and serve them to users upon transfer request (via <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcach">stashcp</a>) unless data are already cached.</li>
 </ul>
 <hr />
 <h2 id="installation-pre-requisities-for-origin-and-cache">Installation pre-requisities for Origin and Cache</h2>
@@ -175,10 +175,7 @@
 <li><strong>Hardware requirements:</strong> We recommend that a StashCache server has at least 10Gbps connectivity, 1TB of disk space, and 8GB of RAM. </li>
 <li>More information about hardware and system configuration of existing caches you can find at <a href="../../ops/upgrades/">Upgrade status page</a>.</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-</div>
-<p>:heavy_exclamation_mark: If installing authenticated StashCache, you need to do in addition following:
+<p>If installing authenticated StashCache, you need to do in addition following:
 <em> <strong>Service certificate:</strong> create copy of the certificate to <code>/etc/grid-security/xrd/xrd{cert,key}.pem</code>
    * set owner of the directory <code>/etc/grid-security/xrd/</code> to <code>xrootd:xrootd</code> user:
       <code>$ chown -R xrootd:xrootd /etc/grid-security/xrd/</code>
@@ -218,7 +215,7 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 </div>
-<p>:heavy_exclamation_mark: If installing authenticated StashCache Cache server, you need additional packages to be installed:</p>
+<p>If installing authenticated StashCache Cache server, you need additional packages to be installed:</p>
 <pre><code>   [root@client ~]$ yum install xrootd-lcmaps globus-proxy-utils
 </code></pre>
 

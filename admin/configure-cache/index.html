@@ -170,7 +170,7 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 </div>
-<p>:bangbang: While example of the configuration file below provides combination of <em>authenticated</em> and <em>non-authenticated</em> <em>Cache</em>, the non-authenticated cache is considered to be default and authenticated cache just optional (additional) service. If you're about to configure in addition <em>authenticated cache</em> read to the end of this document and then follow post-installation of <a href="../configure-cache-auth/">authenticated part here</a>.</p>
+<p>While example of the configuration file below provides combination of <em>authenticated</em> and <em>non-authenticated</em> <em>Cache</em>, the non-authenticated cache is considered to be default and authenticated cache just optional (additional) service. If you're about to configure in addition <em>authenticated cache</em> read to the end of this document and then follow post-installation of <a href="../configure-cache-auth/">authenticated part here</a>.</p>
 <p>For configuring <strong>cache</strong> one needs to define directive <code>pss.origin redirector.osgstorage.org:1024</code> (not <code>all.manager redirector.osgstorage.org+ 1213</code> directive as it is in case of <a href="../configure-origin/">configuring origin</a>). 
 <code>StashCache-daemon</code> package provides default configuration file <code>/etc/xrootd/xrootd-stashcache-cache-server.cfg</code>. Example of the configuration of cache server is as follows:</p>
 <pre><code>all.export  /
