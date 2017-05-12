@@ -160,19 +160,28 @@
               
                 <h1 id="configuring-cache-server-with-authentication">Configuring Cache Server with authentication</h1>
 <p>Before you continue, make sure <a href="../configure-cache/">default Cache Server</a> is configured on first place. Enabling authenticated cache is optionali and additional do default cache instance. This chapter describes all the steps needed. </p>
-<p>Packages installed: <code>stashcache-daemon fetch-crl stashcache-cache-server xrootd-lcmaps globus-proxy-utils</code></p>
+<p>Packages installed: 
+    stashcache-daemon fetch-crl stashcache-cache-server xrootd-lcmaps globus-proxy-utils</p>
 <h2 id="authenticated-cache-server">Authenticated Cache server</h2>
-<p>:heavy_exclamation_mark: Make sure you've in place following pre-requisities from <a href="../install/">install step here</a>:
-<em> <strong>Service certificate:</strong> create copy of the certificate to <code>/etc/grid-security/xrd/xrd{cert,key}.pem</code>
-   * set owner of the directory <code>/etc/grid-security/xrd/</code> to <code>xrootd:xrootd</code> user:
-      <code>$ chown -R xrootd:xrootd /etc/grid-security/xrd/</code>
-</em> <strong>Network ports</strong>: allow connections on port <code>8443 (TCP)</code> </p>
-<p>:heavy_exclamation_mark: Beware, authenticated cache requires presence of the <a href="../../configs/xrootd-stashcache-cache-server.cfg">config file</a> <code>/etc/xrootd/xrootd-stashcache-cache-server.cfg</code>. </p>
-<p>Now, create symbolic link to existing configuration file with <code>-auth</code> postfix:</p>
-<pre><code>   [root@client ~]$ cd /etc/xrootd/
-   [root@client ~]$ ln -s xrootd-stashcache-cache-server.cfg xrootd-stashcache-cache-server-auth.cfg
+<p>Make sure you've in place following pre-requisities from <a href="../install/">install step here</a>:</p>
+<ul>
+<li>
+<p><strong>Service certificate:</strong> create copy of the certificate to <code>/etc/grid-security/xrd/xrd{cert,key}.pem</code></p>
+<ul>
+<li>Set owner of the directory <code>/etc/grid-security/xrd/</code> to <code>xrootd:xrootd</code> user:<pre><code>$ chown -R xrootd:xrootd /etc/grid-security/xrd/
 </code></pre>
-
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Network ports</strong>: allow connections on port <code>8443 (TCP)</code> </p>
+</li>
+</ul>
+<p>Beware, authenticated cache requires presence of the <a href="../../configs/xrootd-stashcache-cache-server.cfg">config file</a> <code>/etc/xrootd/xrootd-stashcache-cache-server.cfg</code>. </p>
+<p>Now, create symbolic link to existing configuration file with <code>-auth</code> postfix:</p>
+<pre><code>[root@client ~]$ cd /etc/xrootd/
+[root@client ~]$ ln -s xrootd-stashcache-cache-server.cfg xrootd-stashcache-cache-server-auth.cfg
+</code></pre>
 <h3 id="rhel7">RHEL7</h3>
 <p>On RHEL7 system, you need to configure and run following systemd units:
 <em> <code>xrootd@stashcache-cache-server-auth.service</code>
@@ -181,99 +190,97 @@
 </em> <code>fetch-crl-cron</code></p>
 <h4 id="authservice">Auth.service</h4>
 <ol>
-<li>Enable <code>xrootd@stashcache-cache-server-auth.service</code> instance:</li>
-</ol>
-<pre><code>   [root@client ~]$ systemctl enable xrootd@stashcache-cache-server-auth
+<li>
+<p>Enable <code>xrootd@stashcache-cache-server-auth.service</code> instance:</p>
+<pre><code>[root@client ~]$ systemctl enable xrootd@stashcache-cache-server-auth
 </code></pre>
-
-<ol>
-<li>Reload daemons:</li>
-</ol>
-<pre><code>   [root@client ~]$ systemctl daemon-reload
+</li>
+<li>
+<p>Reload daemons:</p>
+<pre><code>[root@client ~]$ systemctl daemon-reload
 </code></pre>
-
+</li>
+</ol>
 <h4 id="proxyservice">Proxy.service</h4>
 <ol>
 <li>Create the file with following content:</li>
 </ol>
-<pre><code>   [root@client ~]$ cat /usr/lib/systemd/system/xrootd-renew-proxy.service
-   [Unit]
-   Description=Renew xrootd proxy
+<pre><code>[root@client ~]$ cat /usr/lib/systemd/system/xrootd-renew-proxy.service
+[Unit]
+Description=Renew xrootd proxy
 
-   [Service]
-   User=xrootd
-   Group=xrootd
-   Type = oneshot
-   ExecStart = /bin/grid-proxy-init -cert /etc/grid-security/xrd/xrdcert.pem -key /etc/grid-security/xrd/xrdkey.pem -out /tmp/x509up_xrootd -valid 48:00
+[Service]
+User=xrootd
+Group=xrootd
+Type = oneshot
+ExecStart = /bin/grid-proxy-init -cert /etc/grid-security/xrd/xrdcert.pem -key /etc/grid-security/xrd/xrdkey.pem -out /tmp/x509up_xrootd -valid 48:00
 
-   [Install]
-   WantedBy=multi-user.target
+[Install]
+WantedBy=multi-user.target
 </code></pre>
 
 <ol>
-<li>Reload daemons:</li>
-</ol>
-<pre><code>   [root@client ~]$ systemctl daemon-reload
+<li>Reload daemons:<pre><code>[root@client ~]$ systemctl daemon-reload
 </code></pre>
-
+</li>
+</ol>
 <h4 id="proxytimer">Proxy.timer</h4>
 <ol>
 <li>Create the file with following content:</li>
 </ol>
-<pre><code>   [root@client ~]$ cat /usr/lib/systemd/system/xrootd-renew-proxy.timer
-   [Unit]
-   Description=Renew proxy every day at midnight
+<pre><code>[root@client ~]$ cat /usr/lib/systemd/system/xrootd-renew-proxy.timer
+[Unit]
+Description=Renew proxy every day at midnight
 
-   [Timer]
-   OnCalendar=*-*-* 00:00:00
-   Unit=xrootd-renew-proxy.service
+[Timer]
+OnCalendar=*-*-* 00:00:00
+Unit=xrootd-renew-proxy.service
 
-   [Install]
-   WantedBy=multi-user.target
+[Install]
+WantedBy=multi-user.target
 </code></pre>
 
 <ol>
-<li>Enable timer:</li>
-</ol>
-<pre><code>   [root@client ~]$ systemctl enable xrootd-renew-proxy.timer
+<li>
+<p>Enable timer:</p>
+<pre><code>[root@client ~]$ systemctl enable xrootd-renew-proxy.timer
 </code></pre>
-
-<ol>
-<li>Start and check if timer is active and working:</li>
-</ol>
-<pre><code>   [root@client ~]$ systemctl start xrootd-renew-proxy.timer
-   ...
-   [root@client ~]$ systemctl is-active xrootd-renew-proxy.timer
-   active
-   [root@client ~]$ systemctl list-timers xrootd-renew-proxy*
-   NEXT                         LEFT       LAST                         PASSED  UNIT                     ACTIVATES
-   Thu 2017-05-11 00:00:00 CDT  54min left Wed 2017-05-10 00:00:01 CDT  23h ago xrootd-renew-proxy.timer xrootd-renew-proxy.service
+</li>
+<li>
+<p>Start and check if timer is active and working:</p>
+<pre><code>[root@client ~]$ systemctl start xrootd-renew-proxy.timer
+...
+[root@client ~]$ systemctl is-active xrootd-renew-proxy.timer
+active
+[root@client ~]$ systemctl list-timers xrootd-renew-proxy*
+NEXT                         LEFT       LAST                         PASSED  UNIT                     ACTIVATES
+Thu 2017-05-11 00:00:00 CDT  54min left Wed 2017-05-10 00:00:01 CDT  23h ago xrootd-renew-proxy.timer xrootd-renew-proxy.service
 </code></pre>
-
-<ol>
-<li>Reload daemons:</li>
-</ol>
-<pre><code>   [root@client ~]$ systemctl daemon-reload
+</li>
+<li>
+<p>Reload daemons:</p>
+<pre><code>[root@client ~]$ systemctl daemon-reload
 </code></pre>
-
+</li>
+</ol>
 <h4 id="crls-updates">CRLs updates</h4>
 <p>It is very important to keep CRL list updated from cron:
 1. Enable fetch-crl-cron</p>
-<pre><code>   [root@client ~]$ systemctl enable fetch-crl-cron
+<pre><code>[root@client ~]$ systemctl enable fetch-crl-cron
 </code></pre>
 
 <ol>
-<li>Start fetch-crl-cron</li>
-</ol>
-<pre><code>   [root@client ~]$ systemctl start fetch-crl-cron
+<li>
+<p>Start fetch-crl-cron</p>
+<pre><code>[root@client ~]$ systemctl start fetch-crl-cron
 </code></pre>
-
-<ol>
-<li>Reload daemons:</li>
-</ol>
-<pre><code>   [root@client ~]$ systemctl daemon-reload
+</li>
+<li>
+<p>Reload daemons:</p>
+<pre><code>[root@client ~]$ systemctl daemon-reload
 </code></pre>
-
+</li>
+</ol>
 <h3 id="rhel6">RHEL6</h3>
 <p>...to be added</p>
 <h3 id="add-authfile-for-authenticated-cache">Add Authfile for authenticated cache</h3>

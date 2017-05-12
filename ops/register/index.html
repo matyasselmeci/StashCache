@@ -170,22 +170,22 @@
 <p>To register a cache instance go <a href="https://oim.grid.iu.edu/oim/resourceedit">here</a> (with a cert in your browser). Fill in the required fields, example is displayed below:</p>
 <h3 id="registering-stashcache-resource-information">Registering StashCache resource information:</h3>
 <ul>
-<li>the site <strong>must be</strong> <em>OSG-GOC</em> </li>
-<li>the resource group <strong>must be</strong> <em>Monitored Caches</em>
+<li>The site <strong>must be</strong> <em>OSG-GOC</em> </li>
+<li>The resource group <strong>must be</strong> <em>Monitored Caches</em>
 <img alt="ResourceInfo" src="../../images/resource-info.png" /></li>
 </ul>
 <h3 id="registering-stashcache-resource-services">Registering StashCache resource services:</h3>
 <ul>
-<li>the service <strong>must be</strong> XRootD component
+<li>The service <strong>must be</strong> XRootD component
 <img alt="ResourceServices" src="../../images/resource-services.png" /></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-</div>
 <p>Contact Information (will be pre-filled, add or modify as you see fit) - there are several types of contact, administrative and security are the most important to the GOC - <strong>DO NOT</strong> check the WLCG resource box; Add a Update comment if you'd like.</p>
+</div>
 <h3 id="confirming-and-submitting-stashcache-resource-registration">Confirming and submitting StashCache resource registration:</h3>
 <ul>
-<li>you must click the <strong>"Acceptable Use Policy"</strong> checkbox
+<li>Tou must click the <strong>"Acceptable Use Policy"</strong> checkbox
 <img alt="FormConfirm" src="../../images/resource-confirm.png" />
 Hit the <strong>blue</strong> submit button.</li>
 </ul>
@@ -193,7 +193,6 @@ Hit the <strong>blue</strong> submit button.</li>
 <p>E.g. for the Nebraska instance the status of the following command is checked: </p>
 <pre><code>[user@client ~]$ xrdcp root://hcc-stash.unl.edu//stash/user/test.1M /tmp/dump
 </code></pre>
-
 <p>If the return status is zero, the cache is working, otherwise it is not. What we need from you is:
 * the equivalent <code>//stash/user/test.1M</code> a file you select that will always be there.</p>
 <p>When ready with registration, finish your configuration and <a href="../start/">start</a> your StashCache services.</p>
