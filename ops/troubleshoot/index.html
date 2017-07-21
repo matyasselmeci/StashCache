@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Configure cache optional - StashCache Documentation</title>
+  <title>Troubleshoot - StashCache Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Configure cache optional";
-    var mkdocs_page_input_path = "admin/configure-cache-optional.md";
-    var mkdocs_page_url = "/admin/configure-cache-optional/";
+    var mkdocs_page_name = "Troubleshoot";
+    var mkdocs_page_input_path = "ops/troubleshoot.md";
+    var mkdocs_page_url = "/ops/troubleshoot/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -55,7 +55,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../install/">Install</a>
+    <a class="" href="../../admin/install/">Install</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -64,29 +64,15 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../configure-cache/">Configure cache</a>
+    <a class="" href="../../admin/configure-cache/">Configure cache</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../configure-cache-auth/">Configure cache auth</a>
+    <a class="" href="../../admin/configure-cache-auth/">Configure cache auth</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Configure cache optional</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#optional-configuration">Optional configuration</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#adjust-disk-utilization">Adjust disk utilization</a></li>
-        
-            <li><a class="toctree-l4" href="#enable-remote-debugging">Enable remote debugging</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../../admin/configure-cache-optional/">Configure cache optional</a>
                 </li>
     </ul>
 	    </li>
@@ -97,7 +83,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../configure-origin/">Configure origin</a>
+    <a class="" href="../../admin/configure-origin/">Configure origin</a>
                 </li>
     </ul>
 	    </li>
@@ -108,23 +94,35 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../ops/register/">Register</a>
+    <a class="" href="../register/">Register</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../ops/start/">Start</a>
+    <a class="" href="../start/">Start</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Troubleshoot</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#troubleshooting-tips">Troubleshooting tips</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#get-core-file">Get core file</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../ops/troubleshoot/">Troubleshoot</a>
+    <a class="" href="../redirector/">Redirector</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../ops/redirector/">Redirector</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../ops/upgrades/">Upgrades</a>
+    <a class="" href="../upgrades/">Upgrades</a>
                 </li>
     </ul>
 	    </li>
@@ -151,14 +149,14 @@
     
       
         
-          <li>Cache server &raquo;</li>
+          <li>Operations &raquo;</li>
         
       
     
-    <li>Configure cache optional</li>
+    <li>Troubleshoot</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/opensciencegrid/stashcache/edit/master/docs/admin/configure-cache-optional.md"
+        <a href="https://github.com/opensciencegrid/stashcache/edit/master/docs/ops/troubleshoot.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -168,24 +166,34 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="optional-configuration">Optional configuration</h1>
-<h2 id="adjust-disk-utilization">Adjust disk utilization</h2>
-<p>To adjust the disk utilization of your StashCache cache, modify the values of <code>pfc.diskusage</code> in <code>/etc/xrootd/xrootd-stashcache-cache-server.cfg</code>:</p>
-<pre><code>pfc.diskusage 0.98 .99
+                <h1 id="troubleshooting-tips">Troubleshooting tips</h1>
+<h2 id="get-core-file">Get core file</h2>
+<p>Common settings on the system:
+* set core file size to unlimited: <code>ulimit -c unlimited</code></p>
+<h3 id="core-from-unexpected-process-quit">Core from unexpected process quit</h3>
+<p>First you need to activate xrootd to create core file when process exits unexpectedly:</p>
+<ul>
+<li>set env variable upon cmsd/xrootd start <code>DAEMON_COREFILE_LIMIT="unlimited"</code>
+    RHEL6: env set in <code>/etc/sysconfig/xrootd</code>
+    RHEL7: you can use <code>/etc/sysconfig/xrootd</code> but prepare override file <code>/etc/systemd/system/cmsd@clustered.service.d/override.conf</code> with content:</li>
+</ul>
+<pre><code>     [Service]
+     EnvironmentFile=-/etc/sysconfig/xrootd
 </code></pre>
 
-<p>The first value and second values correspond to the low and high usage watermarks, respectively, in percentages. When the high watermark is reached, the XRootD service will automatically purge cache objects down to the low watermark.</p>
-<h2 id="enable-remote-debugging">Enable remote debugging</h2>
-<p>This feature enables remote debugging via the <code>digFS</code> read-only file system, it's optional line in the <a href="../../configs/xrootd-stashcache-cache-server.cfg">config file</a>:</p>
-<pre><code>xrootd.diglib * /etc/xrootd/digauth.cf
+<h3 id="core-from-running-process">Core from running process</h3>
+<ul>
+<li>directly if you know PID: </li>
+</ul>
+<pre><code>$ gdb --pid=PID_NR
+(gdb) gcore
 </code></pre>
 
-<p>where <code>/etc/xrootd/digauth.cf</code> may have following content:</p>
-<pre><code>all allow host h=abc.org
-all allow host h=*.xyz.edu
+<ul>
+<li>if you know process name (e.g. xrootd):</li>
+</ul>
+<pre><code>`$ gcore $(pidof xrootd)`
 </code></pre>
-
-<p>When ready with configuration, please <a href="../../ops/register/">register</a> and <a href="../../ops/start/">start</a> your StashCache Cache server.</p>
               
             </div>
           </div>
@@ -193,10 +201,10 @@ all allow host h=*.xyz.edu
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../configure-origin/" class="btn btn-neutral float-right" title="Configure origin">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../redirector/" class="btn btn-neutral float-right" title="Redirector">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../configure-cache-auth/" class="btn btn-neutral" title="Configure cache auth"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../start/" class="btn btn-neutral" title="Start"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -224,10 +232,10 @@ all allow host h=*.xyz.edu
           <a href="https://github.com/opensciencegrid/stashcache" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../configure-cache-auth/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../start/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../configure-origin/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../redirector/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Redirector - StashCache Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Redirector";
+    var mkdocs_page_input_path = "ops/redirector.md";
+    var mkdocs_page_url = "/ops/redirector/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> StashCache Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../admin/install/">Install</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cache server</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../admin/configure-cache/">Configure cache</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../admin/configure-cache-auth/">Configure cache auth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../admin/configure-cache-optional/">Configure cache optional</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Origin server</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../admin/configure-origin/">Configure origin</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Operations</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../register/">Register</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../start/">Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../troubleshoot/">Troubleshoot</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Redirector</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#installing-xrootd-stashcache-federation-redirector">Installing XRootD StashCache Federation Redirector</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#redirector-server-recommendations">Redirector server recommendations</a></li>
+        
+            <li><a class="toctree-l4" href="#installation-using-yum">Installation using yum</a></li>
+        
+            <li><a class="toctree-l4" href="#configure-the-local-server-for-rsv-tests-optional">Configure the (local) server for RSV tests (optional)</a></li>
+        
+            <li><a class="toctree-l4" href="#configure-the-redirector-for-caches-and-origins">Configure the redirector for caches and origins</a></li>
+        
+            <li><a class="toctree-l4" href="#test-if-origins-subscribe-to-redirector">Test if Origins subscribe to redirector</a></li>
+        
+            <li><a class="toctree-l4" href="#useful-project-links">Useful Project Links</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../upgrades/">Upgrades</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">StashCache Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Operations &raquo;</li>
+        
+      
+    
+    <li>Redirector</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/opensciencegrid/stashcache/edit/master/docs/ops/redirector.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="installing-xrootd-stashcache-federation-redirector">Installing XRootD StashCache Federation Redirector</h1>
+<p>Use these instructions to install an XRootD StashCache Federation Redirector. These instructions assume that you have SL, CentOS, or RHEL 6.</p>
+<h2 id="redirector-server-recommendations">Redirector server recommendations</h2>
+<p>The service is very lightweight depending on number of subscribers (caching proxies), though. Recommended would be use machine with 4GB of RAM and 2 cores. Load avg is practically close to zero, therefore 2 cores is sufficient with as much RAM as you can reasonably ask for.  As far as disk goes, something reasonable like 500GB of local storage is good enough, and best if the server has a 10 Gbps NIC at least.</p>
+<p>You must have <strong>port</strong> <code>1094</code> and <code>1213</code> open to all traffic; otherwise the redirector will not work.
+In addition (this is optional), we run separate xrootd server instance on redirector host for RSV tests which needs open port <code>2094</code>.</p>
+<h2 id="installation-using-yum">Installation using yum</h2>
+<p>If you don't want to use yum, refer to http://xrootd.org/dload.html for other methods.</p>
+<p>Use predefined OSG repo or copy <code>http://xrootd.org/binaries/xrootd-stable-slc6.repo</code> to <code>/etc/yum.repos.d</code>
+Do: <code>yum install xrootd</code> and answer every question with y</p>
+<h2 id="configure-the-local-server-for-rsv-tests-optional">Configure the (local) server for RSV tests (optional)</h2>
+<p>Edit the configuration file <code>/etc/xrootd/xrootd-clustered-server.cfg</code> to look like this:</p>
+<pre><code>xrd.port 2094 if exec xrootd
+all.adminpath /var/spool/xrootd
+
+all.role server
+
+all.export /stash/
+#Production Redirector DNS alias
+all.manager redirector.osgstorage.org+ 1213
+#ITB Redirector DNS alias
+#all.manager stash-itb.grid.iu.edu+ 1213
+
+For the RSV test purpose make sure the testing file is present on the file system:
+/stash/user/test.1M
+</code></pre>
+
+<h2 id="configure-the-redirector-for-caches-and-origins">Configure the redirector for caches and origins</h2>
+<ol>
+<li>Edit the configuration file (<code>/etc/xrootd/xrootd-clustered.cfg</code>) to look as follows:</li>
+</ol>
+<pre><code>     all.export   / 
+     xrd.allow host * 
+     cms.allow host * 
+     sec.protocol  host 
+     sec.protbind  * none 
+     all.adminpath /var/spool/xrootd 
+     all.pidpath /var/run/xrootd 
+
+     xrootd.trace emsg login stall redirect 
+     ofs.trace all 
+     xrd.trace all debug 
+     cms.trace all debug 
+
+     xrd.port 1094 
+     all.role meta manager 
+
+     #Production Redirector DNS alias
+     all.manager meta all redirector.osgstorage.org+ 1213
+     all.sitename GOC-StashCache-Redirector 
+
+     #ITB Redirector DNS alias
+     #all.manager meta all stash-itb.grid.iu.edu+ 1213
+     #all.sitename GOC-StashCache-ITB-Redirector
+     # XRootD Stats - sends UDP packets
+     xrd.report uct2-collectd.mwt2.org:9931
+     xrootd.monitor all auth flush 30s window 5s fstat 60 lfn ops xfr 5 dest redir fstat info user uct2-collectd.mwt2.org:9930
+</code></pre>
+
+<ol>
+<li>Change ownership of these directories:</li>
+</ol>
+<pre><code>     chown -R xrootd: /var/spool/xrootd
+     chown -R xrootd: /var/log/xrootd
+     chown -R xrootd: /stash
+</code></pre>
+
+<ol>
+<li>
+<p>Start the service: <code>/etc/init.d/{xrootd,cmsd} start</code></p>
+</li>
+<li>
+<p>Set the service start when machine is rebooted: <code>chkconfig --level 2345 {xrootd,cmsd} on</code></p>
+</li>
+<li>
+<p>Test that your instance works as expected, ideally would be setup origin server and subscribe into this redirector. Then, see the log files if origin server joined the Federation. Now, configure <code>/etc/sysconfig/xrootd</code>.
+Assuming host runs both <strong>server and redirector</strong> and the two configurations above are applied, make sure properly edit <code>/etc/sysconfig/xrootd</code> and add/modify these lines:</p>
+</li>
+</ol>
+<pre><code>       XROOTD_DEFAULT_OPTIONS=&quot;-l /var/log/xrootd/xrootd.log -c /etc/xrootd/xrootd-clustered.cfg -k fifo&quot;
+       CMSD_DEFAULT_OPTIONS=&quot;-l /var/log/xrootd/cmsd.log -c /etc/xrootd/xrootd-clustered.cfg -k fifo”
+       XROOTD_SERVER_OPTIONS=&quot;-l /var/log/xrootd/xrootd.log -c /etc/xrootd/xrootd-clustered-server.cfg -k fifo&quot;
+       CMSD_SERVER_OPTIONS=&quot;-l /var/log/xrootd/cmsd.log -c /etc/xrootd/xrootd-clustered-server.cfg -k fifo”
+...
+...
+       XROOTD_INSTANCES=&quot;default server&quot;
+       CMSD_INSTANCES=&quot;default server”
+</code></pre>
+
+<p>If you don't choose server instance setup for RSV tests you can skip lines XROOTD_SERVER_OPTIONS and CMSD_SERVER_OPTIONS as well as ==server== in the _INSTANCES lines.</p>
+<h2 id="test-if-origins-subscribe-to-redirector">Test if Origins subscribe to redirector</h2>
+<p>There is command <code>xrdmapc</code> in the xrootd-server packages that you can use to check what Origins subscribe to your redirector:</p>
+<pre><code>$ xrdmapc --list all redirector.osgstorage.org:1094 
+0**** redirector.grid.iu.edu:1094
+      Srv redirector1.grid.iu.edu:2094
+      Srv csiu.grid.iu.edu:1094
+      Srv redirector2.grid.iu.edu:2094
+      Srv stashcache.fnal.gov:1094
+      Srv ceph-gridftp1.grid.uchicago.edu:1094
+      Srv stash.osgconnect.net:1094
+</code></pre>
+
+<h2 id="useful-project-links">Useful Project Links</h2>
+<p>https://twiki.opensciencegrid.org/bin/view/SoftwareTeam/SW023_StashCacheDetails
+https://twiki.opensciencegrid.org/bin/view/SoftwareTeam/SW023_XrootdAcrossOsg</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../upgrades/" class="btn btn-neutral float-right" title="Upgrades">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../troubleshoot/" class="btn btn-neutral" title="Troubleshoot"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/opensciencegrid/stashcache" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../troubleshoot/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../upgrades/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
