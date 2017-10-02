@@ -273,12 +273,16 @@ xrootd.diglib * /etc/xrootd/digauth.cf
 </code></pre>
 
 <h3 id="rhel7">RHEL7</h3>
-<p>On RHEL7 system, you need to run following systemd unit:
-<em> <code>systemctl start xrootd@stashcache-cache-server.service</code>
-</em> <code>systemctl start condor.service</code></p>
+<p>On RHEL7 system, you need to run following systemd unit:</p>
+<ul>
+<li>
+<p><code>systemctl start xrootd@stashcache-cache-server.service</code></p>
+</li>
+<li>
+<p><code>systemctl start condor.service</code></p>
+</li>
+</ul>
 <p>Please, refer to <a href="../../ops/start/">start services document</a> for more information.</p>
-<h3 id="rhel6">RHEL6</h3>
-<p>...to be added, old doc for RHEL6 configuration resides temporarily <a href="https://twiki.grid.iu.edu/bin/view/Documentation/Release3/InstallStashCache">here</a>.</p>
 <p>When ready with configuration, please <a href="../../ops/register/">register</a> and <a href="../../ops/start/">start</a> your StashCache Cache server.
 If you'd like to configure in addition authenticated cache instance, please follow <a href="../configure-cache-auth/">this</a> document.</p>
               

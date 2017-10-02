@@ -173,9 +173,9 @@
 <h3 id="core-from-unexpected-process-quit">Core from unexpected process quit</h3>
 <p>First you need to activate xrootd to create core file when process exits unexpectedly:</p>
 <ul>
-<li>set env variable upon cmsd/xrootd start <code>DAEMON_COREFILE_LIMIT="unlimited"</code>
-    RHEL6: env set in <code>/etc/sysconfig/xrootd</code>
-    RHEL7: you can use <code>/etc/sysconfig/xrootd</code> but prepare override file <code>/etc/systemd/system/cmsd@clustered.service.d/override.conf</code> with content:</li>
+<li>set environment variable upon cmsd/xrootd start <code>DAEMON_COREFILE_LIMIT="unlimited"</code></li>
+<li>RHEL6: variable set in <code>/etc/sysconfig/xrootd</code> or set as root <code>ulimit -c unlimited</code></li>
+<li>RHEL7: you can use <code>/etc/sysconfig/xrootd</code> but prepare override file <code>/etc/systemd/system/cmsd@clustered.service.d/override.conf</code> with content:</li>
 </ul>
 <pre><code>     [Service]
      EnvironmentFile=-/etc/sysconfig/xrootd
@@ -194,6 +194,11 @@
 </ul>
 <pre><code>`$ gcore $(pidof xrootd)`
 </code></pre>
+
+<h3 id="core-from-not-running-process">Core from not running process:</h3>
+<ul>
+<li>by default, XRootD should leave <code>core file</code> in the <code>/var/spool/xrootd/</code> when it crashes</li>
+</ul>
               
             </div>
           </div>
