@@ -71,7 +71,11 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#cache-server">Cache server</a></li>
+            <li><a class="toctree-l4" href="#add-authfile-for-non-authenticated-cache">Add Authfile for non-authenticated cache</a></li>
+        
+            <li><a class="toctree-l4" href="#add-robots-file">Add Robots file</a></li>
+        
+            <li><a class="toctree-l4" href="#rhel7">RHEL7</a></li>
         
         </ul>
     
@@ -169,9 +173,10 @@
                 <h1 id="configuring-cache-server">Configuring Cache Server</h1>
 <p>Packages installed: <code>stashcache-daemon fetch-crl stashcache-cache-server</code></p>
 <p>The following section describes required configuration to have a functional non-authenticated StashCache Cache (not origin server!). StashCache Cache package <code>stashcache-cache-server</code> needs to be manually configured from pre-existing XRootD configuration.</p>
-<h2 id="cache-server">Cache server</h2>
-<p>!!! Note: 
-    While example of the configuration file below provides combination of <em>authenticated</em> and <em>non-authenticated</em> <em>Cache</em>, the non-authenticated cache is considered to be default and authenticated cache just optional (additional) service. If you're about to configure in addition <em>authenticated cache</em> read to the end of this document and then follow post-installation of <a href="../configure-cache-auth/">authenticated part here</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While example of the configuration file below provides combination of <em>authenticated</em> and <em>non-authenticated</em> <em>Cache</em>, the non-authenticated cache is considered to be default and authenticated cache just optional (additional) service. If you're about to configure in addition <em>authenticated cache</em> read to the end of this document and then follow post-installation of <a href="../configure-cache-auth/">authenticated part here</a>.</p>
+</div>
 <p>For configuring <strong>cache</strong> one needs to define directive <code>pss.origin redirector.osgstorage.org:1024</code> (not <code>all.manager redirector.osgstorage.org+ 1213</code> directive as it is in case of <a href="../configure-origin/">configuring origin</a>). 
 <code>StashCache-daemon</code> package provides default configuration file <code>/etc/xrootd/xrootd-stashcache-cache-server.cfg</code>. Example of the configuration of cache server is as follows:</p>
 <pre><code>all.export  /
