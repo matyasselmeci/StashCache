@@ -117,9 +117,9 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#2017-table-of-caches">2017 Table of Caches</a></li>
+            <li><a class="toctree-l4" href="#2018-table-of-caches">2018 Table of Caches</a></li>
         
-            <li><a class="toctree-l4" href="#2016-table-of-caches">2016 Table of Caches</a></li>
+            <li><a class="toctree-l4" href="#2017-table-of-caches">2017 Table of Caches</a></li>
         
         </ul>
     
@@ -170,6 +170,117 @@
               
                 <h1 id="osg-stashcache-upgrade-status">OSG StashCache Upgrade Status</h1>
 <p>This page is used to track the status of hardware and software used for the StashCache service within the OSG community. Please update your status when you complete an upgrade. Currently monitored StashCache resources (Origins, Caches, Redirectors) are included in the <a href="http://myosg.grid.iu.edu/rgstatushistory/index?downtime_attrs_showpast=&amp;account_type=cumulative_hours&amp;ce_account_type=gip_vo&amp;se_account_type=vo_transfer_volume&amp;bdiitree_type=total_jobs&amp;bdii_object=service&amp;bdii_server=is-osg&amp;start_type=7daysago&amp;start_date=09%2F20%2F2016&amp;end_type=now&amp;end_date=09%2F20%2F2016&amp;rg=on&amp;rg_sel%5B%5D=433&amp;rg_sel%5B%5D=454&amp;rg_sel%5B%5D=430&amp;active=on&amp;active_value=1&amp;disable_value=1">RSV tests</a>.</p>
+<h2 id="2018-table-of-caches">2018 Table of Caches</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Hosting site</strong></th>
+<th><strong>Hostname</strong></th>
+<th><strong>XRootD version</strong></th>
+<th><strong>OS</strong></th>
+<th><strong>CPU</strong></th>
+<th><strong>RAM</strong></th>
+<th><strong>Disk (cache) space</strong></th>
+<th><strong>Disk configuration</strong></th>
+<th><strong>Connectivity</strong></th>
+<th><strong>Notes</strong></th>
+<th><strong>Last update</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Syracuse</td>
+<td>its-condor-xrootd1.syr.edu</td>
+<td>xrootd-server-4.7.0-1.osg33.el7.x86_64</td>
+<td>CentOS 7.2.1511</td>
+<td>Intel(R) Xeon(R) CPU E5-2699 v3 @ 2.30GHz (8 cores)</td>
+<td>65GB</td>
+<td>16TB</td>
+<td></td>
+<td>10Gbps</td>
+<td></td>
+<td>11-03-2017</td>
+</tr>
+<tr>
+<td>BNL</td>
+<td>osgxroot.usatlas.bnl.gov</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FZU</td>
+<td>stash.farm.particle.cz</td>
+<td>4.8.0-1.osg34</td>
+<td>CentOS 7.4.1708</td>
+<td>2x Xeon(R) E5-2630 v4 @2.20GHz</td>
+<td>128GB</td>
+<td>30TB</td>
+<td>5x8TB, RAID-Z1, ZFS, 1TB NVMe Cache</td>
+<td>10Gbps</td>
+<td>Container</td>
+<td>2-2-2018</td>
+</tr>
+<tr>
+<td>Nebraska</td>
+<td>hcc-stash.unl.edu</td>
+<td>4.8.2-1.osg34</td>
+<td>CentOS 7.4.1708</td>
+<td>2x (8 core) Intel(R) Xeon(R) Gold 6134 CPU @ 3.20GHz</td>
+<td>394GB</td>
+<td>~1.5TB</td>
+<td>NVMe</td>
+<td>40Gbps</td>
+<td></td>
+<td>05-01-2018</td>
+</tr>
+<tr>
+<td>UChicago</td>
+<td>stashcache.grid.uchicago.edu</td>
+<td>4.7.1-1</td>
+<td>SL 7.3</td>
+<td>2x Xeon(R) E5440 @2.83GHz</td>
+<td>32GB</td>
+<td>60TB</td>
+<td>5x 12TB arrays, RAID6, XFS, bound with oss.space</td>
+<td>2x10Gbps</td>
+<td>Old dCache node, probably not optimally tuned for XRootD</td>
+<td>11-07-2017</td>
+</tr>
+<tr>
+<td>UIllinois</td>
+<td>mwt2-stashcache.campuscluster.illinois.edu</td>
+<td>4.6.1-0.2.rc3.osg33</td>
+<td></td>
+<td>VM 4CPUS</td>
+<td>16GB</td>
+<td>100TB</td>
+<td>GPFS on DDN via FDR IB</td>
+<td>10Gbps</td>
+<td></td>
+<td>04-28-2017</td>
+</tr>
+<tr>
+<td>UCSD</td>
+<td>xrd-cache-1.t2.ucsd.edu</td>
+<td>4.5.0-0.5.beta</td>
+<td>CentOS 6.8</td>
+<td>2x Xeon(R) E5-2650 v3 @2.30GHz w/HT (40 cores total)</td>
+<td>128GB</td>
+<td>21.8TB</td>
+<td>6x 3.6TB, XFS, individual disks bound with oss.space</td>
+<td>10Gbps</td>
+<td>The same machine runs hdfs-healing xrootd cache on another set of 6 independent disks. We can move more disks to StashCache if needed.</td>
+<td>10-28-2016</td>
+</tr>
+</tbody>
+</table>
 <h2 id="2017-table-of-caches">2017 Table of Caches</h2>
 <table>
 <thead>
@@ -281,13 +392,6 @@
 </tr>
 </tbody>
 </table>
-<h3 id="2017-milestones">2017 Milestones</h3>
-<ul>
-<li>deploy IPv4 and IPv6 enabled XRootD caches
-...</li>
-</ul>
-<h2 id="2016-table-of-caches">2016 Table of Caches</h2>
-<p>...in order to keep history will add later from <a href="https://twiki.grid.iu.edu/bin/view/Documentation/Release3/StashCacheUpgrades">twiki</a></p>
               
             </div>
           </div>
