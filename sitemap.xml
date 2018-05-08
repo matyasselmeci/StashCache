@@ -3,16 +3,16 @@
 
     
     <url>
-     <loc>https://opensciencegrid.github.io/stashcache/</loc>
-     <lastmod>2018-05-03</lastmod>
+     <loc>https://opensciencegrid.org/stashcache/</loc>
+     <lastmod>2018-05-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>https://opensciencegrid.github.io/stashcache/admin/install/</loc>
-     <lastmod>2018-05-03</lastmod>
+     <loc>https://opensciencegrid.org/stashcache/admin/install/</loc>
+     <lastmod>2018-05-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -20,30 +20,20 @@
     
         
     <url>
-     <loc>https://opensciencegrid.github.io/stashcache/admin/configure-cache/</loc>
-     <lastmod>2018-05-03</lastmod>
+     <loc>https://opensciencegrid.org/stashcache/admin/configure-cache/</loc>
+     <lastmod>2018-05-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://opensciencegrid.github.io/stashcache/admin/configure-cache-auth/</loc>
-     <lastmod>2018-05-03</lastmod>
+     <loc>https://opensciencegrid.org/stashcache/admin/configure-cache-auth/</loc>
+     <lastmod>2018-05-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://opensciencegrid.github.io/stashcache/admin/configure-cache-optional/</loc>
-     <lastmod>2018-05-03</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>https://opensciencegrid.github.io/stashcache/admin/configure-origin/</loc>
-     <lastmod>2018-05-03</lastmod>
+     <loc>https://opensciencegrid.org/stashcache/admin/configure-cache-optional/</loc>
+     <lastmod>2018-05-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -52,32 +42,42 @@
     
         
     <url>
-     <loc>https://opensciencegrid.github.io/stashcache/ops/register/</loc>
-     <lastmod>2018-05-03</lastmod>
+     <loc>https://opensciencegrid.org/stashcache/admin/configure-origin/</loc>
+     <lastmod>2018-05-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://opensciencegrid.org/stashcache/ops/register/</loc>
+     <lastmod>2018-05-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://opensciencegrid.github.io/stashcache/ops/start/</loc>
-     <lastmod>2018-05-03</lastmod>
+     <loc>https://opensciencegrid.org/stashcache/ops/start/</loc>
+     <lastmod>2018-05-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://opensciencegrid.github.io/stashcache/ops/troubleshoot/</loc>
-     <lastmod>2018-05-03</lastmod>
+     <loc>https://opensciencegrid.org/stashcache/ops/troubleshoot/</loc>
+     <lastmod>2018-05-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://opensciencegrid.github.io/stashcache/ops/redirector/</loc>
-     <lastmod>2018-05-03</lastmod>
+     <loc>https://opensciencegrid.org/stashcache/ops/redirector/</loc>
+     <lastmod>2018-05-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://opensciencegrid.github.io/stashcache/ops/upgrades/</loc>
-     <lastmod>2018-05-03</lastmod>
+     <loc>https://opensciencegrid.org/stashcache/ops/upgrades/</loc>
+     <lastmod>2018-05-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
