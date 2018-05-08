@@ -225,11 +225,11 @@ For the RSV test purpose make sure the testing file is present on the file syste
 
      #Production Redirector DNS alias
      all.manager meta all redirector.osgstorage.org+ 1213
-     all.sitename GOC-StashCache-Redirector 
+     all.sitename OSG-StashCache-Redirector 
 
      #ITB Redirector DNS alias
      #all.manager meta all stash-itb.osgstorage.org+ 1213
-     #all.sitename GOC-StashCache-ITB-Redirector
+     #all.sitename OSG-StashCache-ITB-Redirector
      # XRootD Stats - sends UDP packets
      xrd.report uct2-collectd.mwt2.org:9931
      xrootd.monitor all auth flush 30s window 5s fstat 60 lfn ops xfr 5 dest redir fstat info user uct2-collectd.mwt2.org:9930
@@ -268,13 +268,12 @@ Assuming host runs both <strong>server and redirector</strong> and the two confi
 <p>If you don't choose server instance setup for RSV tests you can skip lines XROOTD_SERVER_OPTIONS and CMSD_SERVER_OPTIONS as well as ==server== in the _INSTANCES lines.</p>
 <h2 id="test-if-origins-subscribe-to-redirector">Test if Origins subscribe to redirector</h2>
 <p>There is command <code>xrdmapc</code> in the xrootd-server packages that you can use to check what Origins subscribe to your redirector:</p>
-<pre><code>$ xrdmapc --list all redirector.osgstorage.org:1094 
-0**** redirector.osgstorage.org:1094
-      Srv redirector1.osgstorage.org:2094
-      Srv csiu.grid.iu.edu:1094
+<pre><code>$ xrdmapc --list all redirector.osgstorage.org:1094
+0**** hcc-osg-redirector1.unl.edu:1094
+      Srv origin.ligo.caltech.edu:1094
       Srv stashcache.fnal.gov:1094
-      Srv ceph-gridftp1.grid.uchicago.edu:1094
       Srv stash.osgconnect.net:1094
+      Srv csiu.grid.iu.edu:1094
 </code></pre>
 
 <h2 id="useful-project-links">Useful Project Links</h2>
