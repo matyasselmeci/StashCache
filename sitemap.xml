@@ -2,57 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://opensciencegrid.org/stashcache/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/stashcache/admin/install/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/stashcache/admin/configure-cache/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/stashcache/admin/configure-cache-auth/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/stashcache/admin/configure-cache-optional/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/stashcache/admin/configure-origin/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/stashcache/ops/register/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/stashcache/ops/start/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/stashcache/ops/troubleshoot/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/stashcache/ops/redirector/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://opensciencegrid.org/stashcache/ops/upgrades/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
