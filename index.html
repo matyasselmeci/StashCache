@@ -56,6 +56,12 @@
             
     <li class="toctree-l2"><a href="#stashcache">StashCache</a></li>
     
+        <ul>
+        
+            <li><a class="toctree-l3" href="#this-documentation-is-legacy-please-follow-the-current-documentation-on-the-osg-documentation-website">This documentation is legacy.  Please follow the current documentation on the OSG Documentation website.</a></li>
+        
+        </ul>
+    
 
     </ul>
 	    </li>
@@ -158,13 +164,14 @@
             <div class="section">
               
                 <h1 id="stashcache">StashCache</h1>
+<h2 id="this-documentation-is-legacy-please-follow-the-current-documentation-on-the-osg-documentation-website"><strong>This documentation is legacy.  Please follow the current documentation on the <a href="https://opensciencegrid.org/docs/data/stashcache/overview/">OSG Documentation</a> website.</strong></h2>
 <p>This documentation is for Site Admins and OSG Operations team who manage StashCache nodes (origin or cache server; or redirectors). Main functionality of StashCache is based on <a href="http://xrootd.org">XRootD</a> technology, there are other components involved to function StashCache properly, though. E.g. if you are a user of <strong>"stashcp"</strong> you want to follow <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcache">this</a> document instead.</p>
 <hr />
 <p>StashCache operations consist of the following documents:</p>
 <ul>
 <li><a href="admin/install/">StashCache caches</a>: Managed by an organization, <strong>"cache"</strong> server to keep data cached and immediately available (via <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcach">stashcp</a>)within Stash federation (without re-transfering from "origin").</li>
 <li><a href="admin/install/">StashCache origins</a>: Managed by an organization, <strong>"origin"</strong> is data server to host files locally and serve them to users upon transfer request (via <a href="https://support.opensciencegrid.org/support/solutions/articles/12000002775-transferring-data-with-stashcach">stashcp</a>) unless data are already cached.</li>
-<li><a href="ops/redirector/">StashCache redirectors</a>: Redirectors are managed by GOC Operations team at Indiana University, redirectors provides federated access to the data across origins.</li>
+<li><a href="ops/redirector/">StashCache redirectors</a>: Redirectors are managed by OSG Operations, redirectors provides federated access to the data across origins.</li>
 <li><a href="ops/upgrades/">StashCache upgrades</a>: Keeps track of versions deployed at sites as well as other information about OS, system resources, connectivity, etc.</li>
 </ul>
               
@@ -217,5 +224,5 @@
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2018-09-19 21:04:48
+Build Date UTC : 2018-09-20 19:01:24
 -->
