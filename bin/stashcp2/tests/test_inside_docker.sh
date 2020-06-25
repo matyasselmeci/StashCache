@@ -2,6 +2,7 @@
 
 OS_VERSION=$1
 XRD_CACHE=$2
+PYTHON_VERSION=$3
 
 ls -l /home
 
@@ -23,7 +24,18 @@ rpm -Uvh https://repo.opensciencegrid.org/osg/${OSG_VERSION}/osg-${OSG_VERSION}-
 
 yum -y install osg-oasis 
 
-yum -y install python-pip
+
+case $PYTHON_VERSION in
+    2) pip_package=python2-pip
+        pip=pip2
+        python=python2
+        ;;
+    3) pip_package=python3-pip
+        pip=pip3
+        python=python3
+        ;;
+esac
+yum -y install $pip_package
 
 echo "user_allow_other" >> /etc/fuse.conf
 
@@ -46,7 +58,7 @@ module load xrootd
 #pylint /StashCache/bin/stashcp || /bin/true
 
 # Install stashcp
-pip install StashCache/
+$pip install StashCache/
 
 # Copy in the .job.ad file:
 cp /StashCache/bin/stashcp2/tests/job.ad ./.job.ad
