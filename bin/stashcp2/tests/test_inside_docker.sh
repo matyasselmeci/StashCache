@@ -26,16 +26,22 @@ yum -y install osg-oasis
 
 
 case $PYTHON_VERSION in
-    2) pip_package=python2-pip
+    2)
         pip=pip2
         python=python2
+        if [ "$OS_VERSION" -eq 6 ]; then
+            yum -y install python-setuptools
+            easy_install 'pip < 10.0'
+        else
+            yum -y install python2-pip
+        fi
         ;;
-    3) pip_package=python3-pip
+    3)
+        yum -y install python3-pip
         pip=pip3
         python=python3
         ;;
 esac
-yum -y install $pip_package
 
 echo "user_allow_other" >> /etc/fuse.conf
 
