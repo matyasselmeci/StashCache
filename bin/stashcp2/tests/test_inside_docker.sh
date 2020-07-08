@@ -2,7 +2,7 @@
 
 OS_VERSION=$1
 XRD_CACHE=$2
-PYTHON_VERSION=$3
+PYTHON_VERSION=${3:-2}
 
 ls -l /home
 
