@@ -1,8 +1,8 @@
 #!/bin/sh -xe
 
-OS_VERSION=$1
-XRD_CACHE=$2
-PYTHON_VERSION=${3:-2}
+OS_VERSION=${1?Missing argument OS_VERSION}
+XRD_CACHE=${2?Missing argument XRD_CACHE}
+PYTHON_VERSION=${3?Missing argument PYTHON_VERSION}
 
 ls -l /home
 
@@ -13,11 +13,15 @@ yum -y clean expire-cache
 # First, install all the needed packages.
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-${OS_VERSION}.noarch.rpm
 
-yum -y install yum-plugin-priorities
 case $OS_VERSION in
-    6) OSG_VERSION=3.4
+    6)  OSG_VERSION=3.4
+        yum -y install yum-plugin-priorities
         ;;
-    7|8) OSG_VERSION=3.5
+    7)  OSG_VERSION=3.5
+        yum -y install yum-plugin-priorities
+        ;;
+    8)  OSG_VERSION=3.5
+        # no priorities
         ;;
 esac
 rpm -Uvh https://repo.opensciencegrid.org/osg/${OSG_VERSION}/osg-${OSG_VERSION}-el${OS_VERSION}-release-latest.rpm

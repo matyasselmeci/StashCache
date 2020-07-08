@@ -8,14 +8,11 @@ XRD_CACHE=$2
 PYTHON_VERSION=$3
 
 if [ "${BUILD_TYPE}" = "http" ]; then
-  case $PYTHON_VERSION in
-      2)
-          python=python2
-          ;;
-      3)
-          python=python3
-          ;;
-  esac
+  python=python2
+  if [ "$PYTHON_VERSION" = 3 ]; then
+    python=python3
+  fi
+
   # Run the test without a container
   # Copy in the .job.ad file:
   cp bin/stashcp2/tests/job.ad ./.job.ad
@@ -55,14 +52,14 @@ if [ "${BUILD_TYPE}" = "http" ]; then
  # Run tests in Container
 elif [ "$el_version" = "6" ]; then
 
-sudo docker run --privileged --rm=true -v `pwd`:/StashCache:rw centos:centos${OS_VERSION} /bin/bash -c "bash -xe /StashCache/bin/stashcp2/tests/test_inside_docker.sh ${OS_VERSION} ${XRD_CACHE} ${PYTHON_VERSION:-2}"
+sudo docker run --privileged --rm=true -v `pwd`:/StashCache:rw centos:centos${OS_VERSION} /bin/bash -c "bash -xe /StashCache/bin/stashcp2/tests/test_inside_docker.sh \"${OS_VERSION}\" \"${XRD_CACHE}\" \"${PYTHON_VERSION}\""
 
 elif [ "$el_version" = "7" ]; then
 
 docker run --privileged --cap-add SYS_ADMIN -d -ti -e "container=docker"  -v /sys/fs/cgroup:/sys/fs/cgroup -v `pwd`:/StashCache:rw  centos:centos${OS_VERSION}   /usr/sbin/init
 DOCKER_CONTAINER_ID=$(docker ps | grep centos | awk '{print $1}')
 docker logs $DOCKER_CONTAINER_ID
-docker exec -ti $DOCKER_CONTAINER_ID /bin/bash -xec "bash -xe /StashCache/bin/stashcp2/tests/test_inside_docker.sh ${OS_VERSION} ${XRD_CACHE} ${PYTHON_VERSION:-2};
+docker exec -ti $DOCKER_CONTAINER_ID /bin/bash -xec "bash -xe /StashCache/bin/stashcp2/tests/test_inside_docker.sh \"${OS_VERSION}\" \"${XRD_CACHE}\" \"${PYTHON_VERSION}\";
 echo -ne \"------\nEND stashcp TESTS\n\";"
 docker ps -a
 docker stop $DOCKER_CONTAINER_ID
@@ -73,7 +70,7 @@ elif [ "$el_version" = "8" ]; then
 docker run --privileged --cap-add SYS_ADMIN -d -ti -e "container=docker"  -v /sys/fs/cgroup:/sys/fs/cgroup -v `pwd`:/StashCache:rw  centos:centos${OS_VERSION}   /usr/sbin/init
 DOCKER_CONTAINER_ID=$(docker ps | grep centos | awk '{print $1}')
 docker logs $DOCKER_CONTAINER_ID
-docker exec -ti $DOCKER_CONTAINER_ID /bin/bash -xec "bash -xe /StashCache/bin/stashcp2/tests/test_inside_docker.sh ${OS_VERSION} ${XRD_CACHE} ${PYTHON_VERSION:-3};
+docker exec -ti $DOCKER_CONTAINER_ID /bin/bash -xec "bash -xe /StashCache/bin/stashcp2/tests/test_inside_docker.sh \"${OS_VERSION}\" \"${XRD_CACHE}\" \"${PYTHON_VERSION}\";
 echo -ne \"------\nEND stashcp TESTS\n\";"
 docker ps -a
 docker stop $DOCKER_CONTAINER_ID
