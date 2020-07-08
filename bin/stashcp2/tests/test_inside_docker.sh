@@ -1,14 +1,17 @@
 #!/bin/sh -xe
 
-OS_VERSION=${1?Missing argument OS_VERSION}
-XRD_CACHE=${2?Missing argument XRD_CACHE}
-PYTHON_VERSION=${3?Missing argument PYTHON_VERSION}
+if [ $# -ne 3 ]; then
+    echo >&2 "Usage:  $0 OS_VERSION XRD_CACHE PYTHON_VERSION"
+    exit 2
+fi
+OS_VERSION=$1
+XRD_CACHE=$2
+PYTHON_VERSION=$3
 
 ls -l /home
 
 # Clean the yum cache
 yum -y clean all
-yum -y clean expire-cache
 
 # First, install all the needed packages.
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-${OS_VERSION}.noarch.rpm
