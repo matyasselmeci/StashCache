@@ -67,12 +67,14 @@ module load xrootd
 # Install stashcp
 $pip install StashCache/
 
+stashcp=$(command -v stashcp)
+
 # Copy in the .job.ad file:
 cp /StashCache/bin/stashcp2/tests/job.ad ./.job.ad
 
 # Test against a file that is known to not exist
 set +e
-$python stashcp --cache=$XRD_CACHE /blah/does/not/exist ./
+$python $stashcp --cache=$XRD_CACHE /blah/does/not/exist ./
 if [ $? -eq 0 ]; then
   echo "Failed to exit with non-zero exit status when it should have"
   exit 1
@@ -80,14 +82,14 @@ fi
 set -e
 
 # Try copying with no forward slash
-$python stashcp --cache=$XRD_CACHE osgconnect/public/dweitzel/blast/queries/query1 ./
+$python $stashcp --cache=$XRD_CACHE osgconnect/public/dweitzel/blast/queries/query1 ./
 
 result=`md5sum query1 | awk '{print $1;}'`
 
 rm query1
 
 # Try copying with different destintion filename
-$python stashcp --cache=$XRD_CACHE -d /osgconnect/public/dweitzel/blast/queries/query1 query.test
+$python $stashcp --cache=$XRD_CACHE -d /osgconnect/public/dweitzel/blast/queries/query1 query.test
 
 result=`md5sum query.test | awk '{print $1;}'`
 
@@ -98,7 +100,7 @@ fi
 rm -f query.test
 
 # Perform tests
-$python stashcp --cache=$XRD_CACHE -d /osgconnect/public/dweitzel/blast/queries/query1 ./
+$python $stashcp --cache=$XRD_CACHE -d /osgconnect/public/dweitzel/blast/queries/query1 ./
 
 result=`md5sum query1 | awk '{print $1;}'`
 
@@ -108,7 +110,7 @@ fi
 rm -f query.test
 
 # Perform methods test
-$python stashcp --cache=$XRD_CACHE --method=cvmfs,xrootd -d /osgconnect/public/dweitzel/blast/queries/query1 ./
+$python $stashcp --cache=$XRD_CACHE --method=cvmfs,xrootd -d /osgconnect/public/dweitzel/blast/queries/query1 ./
 
 result=`md5sum query1 | awk '{print $1;}'`
 
@@ -118,7 +120,7 @@ fi
 rm -f query.test
 
 # Perform methods test
-$python stashcp --cache=$XRD_CACHE --method=xrootd -d /osgconnect/public/dweitzel//blast/queries/query1 ./
+$python $stashcp --cache=$XRD_CACHE --method=xrootd -d /osgconnect/public/dweitzel//blast/queries/query1 ./
 
 result=`md5sum query1 | awk '{print $1;}'`
 
@@ -128,7 +130,7 @@ fi
 rm -f query.test
 
 # Perform methods test
-$python stashcp --cache=$XRD_CACHE --method=http,xrootd -d /osgconnect/public/dweitzel/blast/queries/query1 ./
+$python $stashcp --cache=$XRD_CACHE --method=http,xrootd -d /osgconnect/public/dweitzel/blast/queries/query1 ./
 
 result=`md5sum query1 | awk '{print $1;}'`
 
@@ -138,7 +140,7 @@ fi
 rm -f query.test
 
 # Scheme test
-$python stashcp --cache=$XRD_CACHE --method=http,xrootd -d stash:///osgconnect/public/dweitzel/blast/queries/query1 file:///tmp
+$python $stashcp --cache=$XRD_CACHE --method=http,xrootd -d stash:///osgconnect/public/dweitzel/blast/queries/query1 file:///tmp
 
 result=`md5sum /tmp/query1 | awk '{print $1;}'`
 
@@ -147,7 +149,7 @@ if [ "$result" != "12bdb9a96cd5e8ca469b727a81593201" ]; then
 fi
 rm -f query.test
 
-$python stashcp --cache=$XRD_CACHE -d -r /osgconnect/public/dweitzel/blast/queries ./
+$python $stashcp --cache=$XRD_CACHE -d -r /osgconnect/public/dweitzel/blast/queries ./
 ls -lah
 
 rm -rf queries

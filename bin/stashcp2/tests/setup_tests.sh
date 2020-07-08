@@ -4,17 +4,28 @@
 
 # Version of CentOS/RHEL
 el_version=$1
-PYTHON_VERSION=$2
+XRD_CACHE=$2
+PYTHON_VERSION=$3
 
 if [ "${BUILD_TYPE}" = "http" ]; then
+  case $PYTHON_VERSION in
+      2)
+          python=python2
+          ;;
+      3)
+          python=python3
+          ;;
+  esac
   # Run the test without a container
   # Copy in the .job.ad file:
   cp bin/stashcp2/tests/job.ad ./.job.ad
-  python setup.py install
+  $python setup.py install
+
+  stashcp=$(command -v stashcp)
 
   # Test against a file that is known to not exist
   set +e
-  stashcp --cache=$XRD_CACHE /blah/does/not/exist ./
+  $python $stashcp --cache=$XRD_CACHE /blah/does/not/exist ./
   if [ $? -eq 0 ]; then
     echo "Failed to exit with non-zero exit status when it should have"
     exit 1
@@ -22,7 +33,7 @@ if [ "${BUILD_TYPE}" = "http" ]; then
   set -e
 
   # Try copying with different destintion filename
-  stashcp --cache=$XRD_CACHE -d /osgconnect/public/dweitzel/blast/queries/query1 query.test
+  $python $stashcp --cache=$XRD_CACHE -d /osgconnect/public/dweitzel/blast/queries/query1 query.test
 
   result=`md5sum query.test | awk '{print $1;}'`
 
@@ -33,7 +44,7 @@ if [ "${BUILD_TYPE}" = "http" ]; then
   rm -f query.test
 
   # Perform tests
-  stashcp --cache=$XRD_CACHE -d /osgconnect/public/dweitzel/blast/queries/query1 ./
+  $python $stashcp --cache=$XRD_CACHE -d /osgconnect/public/dweitzel/blast/queries/query1 ./
 
   result=`md5sum query1 | awk '{print $1;}'`
 
