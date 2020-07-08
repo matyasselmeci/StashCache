@@ -4,7 +4,7 @@
 
 # Version of CentOS/RHEL
 el_version=$1
-cache=$2
+PYTHON_VERSION=$2
 
 if [ "${BUILD_TYPE}" = "http" ]; then
   # Run the test without a container
