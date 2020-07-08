@@ -8,6 +8,8 @@ env:
   - OS_TYPE=centos OS_VERSION=6 PYTHON_VERSION=2 XRD_CACHE="root://sc-cache.chtc.wisc.edu"
   - OS_TYPE=centos OS_VERSION=7 PYTHON_VERSION=2 XRD_CACHE="root://its-condor-xrootd1.syr.edu"
   - OS_TYPE=centos OS_VERSION=7 PYTHON_VERSION=2 XRD_CACHE="root://sc-cache.chtc.wisc.edu"
+  - OS_TYPE=centos OS_VERSION=7 PYTHON_VERSION=3 XRD_CACHE="root://its-condor-xrootd1.syr.edu"
+  - OS_TYPE=centos OS_VERSION=7 PYTHON_VERSION=3 XRD_CACHE="root://sc-cache.chtc.wisc.edu"
   - OS_TYPE=centos OS_VERSION=7 PYTHON_VERSION=2 XRD_CACHE="root://osg-new-york-stashcache.nrp.internet2.edu"
   - OS_TYPE=centos OS_VERSION=7 PYTHON_VERSION=2 XRD_CACHE="root://osg-kansas-city-stashcache.nrp.internet2.edu"
   - OS_TYPE=centos OS_VERSION=7 PYTHON_VERSION=2 XRD_CACHE="root://osg-chicago-stashcache.nrp.internet2.edu"
