@@ -31,7 +31,8 @@ case $PYTHON_VERSION in
         python=python2
         if [ "$OS_VERSION" -eq 6 ]; then
             yum -y install python-setuptools
-            easy_install 'pip < 10.0'
+            export PYTHONDONTWRITEBYTECODE=
+            easy_install 'pip==9'
         else
             yum -y install python2-pip
         fi
