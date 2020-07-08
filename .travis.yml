@@ -14,7 +14,7 @@ env:
   - OS_TYPE=centos OS_VERSION=7 PYTHON_VERSION=2 XRD_CACHE="root://fiona.uvalight.net"
   - OS_TYPE=centos OS_VERSION=7 PYTHON_VERSION=2 XRD_CACHE="root://stashcache.t2.ucsd.edu"
   - OS_TYPE=centos OS_VERSION=7 PYTHON_VERSION=2 XRD_CACHE="root://osg-gftp.pace.gatech.edu"
-  - BUILD_TYPE=http OS_TYPE=centos OS_VERSION=7 PYTHON_VERSION=2
+  - BUILD_TYPE=http OS_TYPE=centos OS_VERSION=7 PYTHON_VERSION=2 XRD_CACHE=
 
 
 language: python
@@ -40,7 +40,7 @@ before_install:
 
 script:
 - if [ "$BUILD_TYPE" = "docs" ]; then bin/stashcp2/tests/build_docs.sh; fi
-- bin/stashcp2/tests/setup_tests.sh ${OS_VERSION} ${XRD_CACHE} ${PYTHON_VERSION}
+- bin/stashcp2/tests/setup_tests.sh "${OS_VERSION}" "${XRD_CACHE}" "${PYTHON_VERSION}"
 
 deploy:
   provider: pypi
